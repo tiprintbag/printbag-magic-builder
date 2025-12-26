@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Linkedin, Instagram, Facebook } from "lucide-react";
-import logoPrintbag from "@/assets/logo-printbag.png";
+import logoPrintbag from "@/assets/logo-printbag-original.png";
 
 const footerLinks = {
   empresa: [
