@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { LogoPrintbag } from "@/components/LogoPrintbag";
+import logoPrintbag from "@/assets/logo-printbag-original.png";
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -57,7 +57,7 @@ export function Header() {
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center gap-3"
             >
-              <LogoPrintbag className="h-12 w-auto" />
+              <img src={logoPrintbag} alt="Printbag Embalagens" className="h-12 w-auto" />
             </motion.div>
           </Link>
 
