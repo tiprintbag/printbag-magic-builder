@@ -62,13 +62,17 @@ export default function HomePage() {
     <Layout>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image */}
+        {/* Background Video */}
         <div className="absolute inset-0">
-          <img 
-            src={heroFactory} 
-            alt="Fábrica Printbag - Linha de produção moderna" 
-            className="w-full h-full object-cover"
-          />
+          <div className="absolute inset-0 w-full h-full overflow-hidden">
+            <iframe
+              src="https://www.youtube.com/embed/bcQ1I1dLc_U?autoplay=1&mute=1&loop=1&playlist=bcQ1I1dLc_U&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=12"
+              title="Printbag Video Background"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full h-[56.25vw] min-h-full pointer-events-none"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            />
+          </div>
           <div className="absolute inset-0 bg-primary/20" />
         </div>
 
