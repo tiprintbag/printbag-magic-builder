@@ -11,7 +11,11 @@ import {
   Utensils,
   Pill,
   Store,
-  Package
+  Package,
+  TreePine,
+  Zap,
+  Award,
+  ShieldCheck
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
@@ -435,76 +439,119 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Sustainability Section */}
-      <section className="py-20 md:py-28">
+      {/* Certifications Section */}
+      <section className="py-20 md:py-28 bg-muted">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center max-w-3xl mx-auto mb-12"
+          >
+            <span className="text-secondary font-medium uppercase tracking-wider text-sm">
+              Compromisso Ambiental
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mt-4 mb-6">
+              Certificações e Conquistas
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Nossa dedicação à qualidade e sustentabilidade é reconhecida por certificações 
+              e prêmios que validam nosso compromisso com a excelência.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Selo FSC */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="order-2 lg:order-1 relative"
+              transition={{ delay: 0.1 }}
+              className="bg-card rounded-2xl p-6 shadow-medium border border-border hover:shadow-strong transition-shadow duration-300"
             >
-              <div className="rounded-2xl overflow-hidden shadow-strong">
-                <img 
-                  src={sustainabilityHero} 
-                  alt="Embalagens sustentáveis Printbag" 
-                  className="w-full h-auto"
-                />
+              <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-5">
+                <TreePine className="w-7 h-7 text-secondary" />
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-secondary text-secondary-foreground p-6 rounded-xl shadow-glow-secondary">
-                <Leaf className="w-8 h-8 mb-2" />
-                <div className="text-sm font-semibold">Certificação FSC</div>
-              </div>
+              <h3 className="text-lg font-heading font-bold text-foreground mb-3">
+                Selo FSC
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Utilizamos matéria-prima certificada e originária de madeira de reflorestamento.
+              </p>
             </motion.div>
 
+            {/* Selo Energia Renovável */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="order-1 lg:order-2"
+              transition={{ delay: 0.2 }}
+              className="bg-card rounded-2xl p-6 shadow-medium border border-border hover:shadow-strong transition-shadow duration-300"
             >
-              <span className="text-secondary font-medium uppercase tracking-wider text-sm">
-                Compromisso Ambiental
-              </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-foreground mt-4 mb-6">
-                Sustentabilidade em Cada Embalagem
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8">
-                Acreditamos que é possível criar embalagens de alta qualidade com 
-                responsabilidade ambiental. Nossa produção utiliza materiais reciclados 
-                e processos que minimizam o impacto ao meio ambiente.
-              </p>
-
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                    <Recycle className="w-5 h-5 text-secondary" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-foreground">80%</div>
-                    <div className="text-sm text-muted-foreground">Material Reciclado</div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                    <Leaf className="w-5 h-5 text-secondary" />
-                  </div>
-                  <div>
-                    <div className="font-semibold text-foreground">100%</div>
-                    <div className="text-sm text-muted-foreground">Reciclável</div>
-                  </div>
-                </div>
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+                <Zap className="w-7 h-7 text-primary" />
               </div>
+              <h3 className="text-lg font-heading font-bold text-foreground mb-3">
+                Selo Energia Renovável
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Reduzimos nossa emissão de gases de efeito estufa a partir da geração de energia renovável.
+              </p>
+            </motion.div>
 
-              <Button variant="sustainability" size="lg" asChild>
-                <Link to="/sustentabilidade">
-                  Saiba Mais
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </Button>
+            {/* Certificado ABVTEX */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="bg-card rounded-2xl p-6 shadow-medium border border-border hover:shadow-strong transition-shadow duration-300"
+            >
+              <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-5">
+                <ShieldCheck className="w-7 h-7 text-secondary" />
+              </div>
+              <h3 className="text-lg font-heading font-bold text-foreground mb-3">
+                Certificado ABVTEX
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Buscamos ações de boas práticas socioambientais e de governança no ambiente corporativo.
+              </p>
+            </motion.div>
+
+            {/* Certificado de Excelência Gráfica */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="bg-card rounded-2xl p-6 shadow-medium border border-border hover:shadow-strong transition-shadow duration-300"
+            >
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+                <Award className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="text-lg font-heading font-bold text-foreground mb-3">
+                Excelência Gráfica
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Excelência reconhecida com múltiplos títulos no Prêmio Fernando Pini.
+              </p>
             </motion.div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="text-center mt-10"
+          >
+            <Button variant="sustainability" size="lg" asChild>
+              <Link to="/sustentabilidade">
+                Saiba Mais sobre Sustentabilidade
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
+          </motion.div>
         </div>
       </section>
 
