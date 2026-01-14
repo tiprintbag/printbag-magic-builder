@@ -59,7 +59,7 @@ const stats = [
   { value: "25+", label: "Anos de Experiência" },
   { value: "500+", label: "Clientes Atendidos" },
   { value: "+10 mil", label: "Pontos de Venda Atendidos" },
-  { value: "+100 milhões", label: "Embalagens/Ano" },
+  { value: "+100M", label: "Embalagens/Ano" },
 ];
 
 export default function HomePage() {
