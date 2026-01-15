@@ -23,6 +23,9 @@ import heroFactory from "@/assets/hero-factory.jpg";
 import sustainabilityHero from "@/assets/sustainability-hero.jpg";
 import cardPrintmoda from "@/assets/card-printmoda.jpg";
 import cardPrintfood from "@/assets/card-printfood.jpg";
+import sectorFarmacias from "@/assets/sector-farmacias.jpg";
+import sectorSupermercados from "@/assets/sector-supermercados.jpg";
+import sectorFood from "@/assets/sector-food.jpg";
 
 // Client logos - Alphabetical order
 import logoAramis from "@/assets/clients/aramis.png";
@@ -289,8 +292,8 @@ export default function HomePage() {
               transition={{ delay: 0.2 }}
               className="bg-card rounded-2xl shadow-medium overflow-hidden border border-border hover:shadow-strong transition-shadow duration-300 group"
             >
-              <div className="relative h-40 overflow-hidden bg-primary/10 flex items-center justify-center">
-                <Utensils className="w-16 h-16 text-primary/40" />
+              <div className="relative h-40 overflow-hidden">
+                <img src={sectorFood} alt="Embalagens Food / Chocolates" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-6">
                   <h3 className="text-xl font-heading font-bold text-white">Food / Chocolates</h3>
@@ -322,8 +325,8 @@ export default function HomePage() {
               transition={{ delay: 0.25 }}
               className="bg-card rounded-2xl shadow-medium overflow-hidden border border-border hover:shadow-strong transition-shadow duration-300 group"
             >
-              <div className="relative h-40 overflow-hidden bg-secondary/10 flex items-center justify-center">
-                <Pill className="w-16 h-16 text-secondary/40" />
+              <div className="relative h-40 overflow-hidden">
+                <img src={sectorFarmacias} alt="Embalagens Farmácias" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-6">
                   <h3 className="text-xl font-heading font-bold text-white">Farmácias</h3>
@@ -355,8 +358,8 @@ export default function HomePage() {
               transition={{ delay: 0.3 }}
               className="bg-card rounded-2xl shadow-medium overflow-hidden border border-border hover:shadow-strong transition-shadow duration-300 group"
             >
-              <div className="relative h-40 overflow-hidden bg-primary/10 flex items-center justify-center">
-                <Store className="w-16 h-16 text-primary/40" />
+              <div className="relative h-40 overflow-hidden">
+                <img src={sectorSupermercados} alt="Embalagens Supermercados" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-6">
                   <h3 className="text-xl font-heading font-bold text-white">Supermercados</h3>
