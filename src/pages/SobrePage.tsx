@@ -84,7 +84,7 @@ export default function SobrePage() {
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-primary-foreground mt-4 mb-6"
             >
-              Mais de 10 Anos{" "}
+              Mais de 40 Anos{" "}
               <span className="text-gradient-primary">Transformando</span>{" "}
               Marcas
             </motion.h1>
@@ -135,7 +135,7 @@ export default function SobrePage() {
                 Nossa História
               </h2>
               <p className="text-muted-foreground mb-6">
-                Fundada em 2013, a Printbag nasceu da visão de criar embalagens que 
+                Fundada em 1980, a Printbag nasceu da visão de criar embalagens que 
                 fossem mais do que simples invólucros – seriam extensões das marcas 
                 que representam.
               </p>
@@ -325,8 +325,8 @@ export default function SobrePage() {
               Junte-se às centenas de marcas que confiam na Printbag para suas embalagens.
             </p>
             <Button variant="heroPrimary" size="xl" asChild className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
-              <Link to="/contato">
-                Fale Conosco
+              <Link to="/contato?assunto=Falar com Recursos Humanos">
+                Trabalhe Conosco
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </Button>

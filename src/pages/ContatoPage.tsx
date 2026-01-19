@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { 
   Phone, 
@@ -43,6 +44,7 @@ const assuntoOptions = [
 ];
 
 export default function ContatoPage() {
+  const [searchParams] = useSearchParams();
   const [formData, setFormData] = useState({
     nome: "",
     empresa: "",
@@ -54,6 +56,13 @@ export default function ContatoPage() {
     mensagem: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const assuntoParam = searchParams.get("assunto");
+    if (assuntoParam && assuntoOptions.includes(assuntoParam)) {
+      setFormData(prev => ({ ...prev, assunto: assuntoParam }));
+    }
+  }, [searchParams]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
