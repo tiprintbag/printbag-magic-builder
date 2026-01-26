@@ -6,20 +6,19 @@ const footerLinks = {
   empresa: [
     { name: "Sobre Nós", path: "/sobre" },
     { name: "Sustentabilidade", path: "/sustentabilidade" },
-    { name: "Cases de Sucesso", path: "/cases" },
+    { name: "Privacidade", path: "/privacidade" },
     { name: "Blog", path: "/blog" },
   ],
   solucoes: [
-    { name: "Sacolas de Papel", path: "/solucoes#sacolas" },
     { name: "Embalagens", path: "/solucoes#embalagens" },
-    { name: "Personalização", path: "/solucoes#personalizacao" },
-    { name: "Loja Online", path: "/loja" },
+    { name: "Acabamentos", path: "/solucoes#acabamentos" },
+    { name: "Diferenciais Printbag", path: "/solucoes#diferenciais" },
   ],
-  suporte: [
+  contato: [
     { name: "Fale Conosco", path: "/contato" },
-    { name: "Solicite Orçamento", path: "/contato" },
-    { name: "Política de Privacidade", path: "/privacidade" },
-    { name: "Termos de Uso", path: "/termos" },
+    { name: "Solicite Orçamento", path: "/contato?assunto=Fazer um orçamento" },
+    { name: "Trabalhe Conosco", path: "/contato?assunto=Falar com Recursos Humanos" },
+    { name: "Seja um Fornecedor", path: "/contato?assunto=Quero ser um Fornecedor" },
   ],
 };
 
@@ -39,20 +38,20 @@ export function Footer() {
               />
             </Link>
             <p className="text-background/70 mb-6 max-w-sm">
-              Há mais de 25 anos transformando marcas através de embalagens sustentáveis e personalizadas de alta qualidade.
+              Há mais de 40 anos transformando marcas através de embalagens sustentáveis e personalizadas de alta qualidade.
             </p>
             <div className="flex flex-col gap-3">
-              <a href="tel:+5551999999999" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
+              <a href="tel:+554732410800" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
                 <Phone className="w-4 h-4" />
-                <span>(51) 99999-9999</span>
+                <span>(47) 3241-0800</span>
               </a>
-              <a href="mailto:contato@printbag.com.br" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
+              <a href="mailto:marketing@printbag.com.br" className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors">
                 <Mail className="w-4 h-4" />
-                <span>contato@printbag.com.br</span>
+                <span>marketing@printbag.com.br</span>
               </a>
               <div className="flex items-start gap-3 text-background/70">
                 <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
-                <span>Av. Industrial, 1500 - Distrito Industrial<br />Porto Alegre - RS, 90000-000</span>
+                <span>Av. José Francisco Bernardes, 1751 - Bairro Areias<br />Camboriú - SC, 88345-200</span>
               </div>
             </div>
           </div>
@@ -85,9 +84,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-heading font-semibold text-lg mb-4">Suporte</h4>
+            <h4 className="font-heading font-semibold text-lg mb-4">Contato</h4>
             <ul className="flex flex-col gap-2">
-              {footerLinks.suporte.map((link) => (
+              {footerLinks.contato.map((link) => (
                 <li key={link.name}>
                   <Link to={link.path} className="text-background/70 hover:text-primary transition-colors">
                     {link.name}

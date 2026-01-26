@@ -38,7 +38,7 @@ const assuntoOptions = [
   "Fazer um orçamento",
   "Falar com Marketing",
   "Falar com Recursos Humanos",
-  "Ser Nosso Fornecedor",
+  "Quero ser um Fornecedor",
   "Sugestão ou Reclamação",
   "Outros"
 ];
