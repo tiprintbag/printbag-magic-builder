@@ -59,8 +59,16 @@ export default function ContatoPage() {
 
   useEffect(() => {
     const assuntoParam = searchParams.get("assunto");
+    const mensagemParam = searchParams.get("mensagem");
+    
     if (assuntoParam && assuntoOptions.includes(assuntoParam)) {
-      setFormData(prev => ({ ...prev, assunto: assuntoParam }));
+      setFormData(prev => ({ 
+        ...prev, 
+        assunto: assuntoParam,
+        mensagem: mensagemParam ? decodeURIComponent(mensagemParam) : prev.mensagem
+      }));
+    } else if (mensagemParam) {
+      setFormData(prev => ({ ...prev, mensagem: decodeURIComponent(mensagemParam) }));
     }
   }, [searchParams]);
 
