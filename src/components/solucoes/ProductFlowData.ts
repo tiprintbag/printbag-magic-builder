@@ -125,16 +125,187 @@ export const boxExtraOptions = [
   { id: "enchimento", label: "Enchimento / proteção" }
 ];
 
+// ========================
+// ENVELOPE OPTIONS
+// ========================
+
+// Envelope type options
+export const envelopeTypeOptions = [
+  { 
+    id: "simples", 
+    label: "Envelope simples",
+    description: "Funcional, econômico e ideal para alto volume."
+  },
+  { 
+    id: "enobrecido", 
+    label: "Envelope enobrecido",
+    description: "Mais sofisticação para valorizar a experiência do cliente."
+  }
+];
+
+// Envelope format options for simple envelopes
+export const envelopeFormatOptionsSimple = [
+  { id: "tradicional", label: "Envelope tradicional" },
+  { id: "com-aba", label: "Envelope com aba" },
+  { id: "com-visor", label: "Envelope com visor" },
+  { id: "tipo-pasta", label: "Envelope tipo pasta" }
+];
+
+// Envelope format options for premium envelopes
+export const envelopeFormatOptionsPremium = [
+  { id: "aba-lateral", label: "Envelope com aba lateral" },
+  { id: "pasta-premium", label: "Envelope tipo pasta premium" },
+  { id: "fechamento-especial", label: "Envelope com fechamento especial" }
+];
+
+// Paper options for simple envelopes
+export const envelopePaperOptionsSimple = [
+  { id: "kraft", label: "Kraft" },
+  { id: "branco", label: "Branco" },
+  { id: "outro", label: "Outro" }
+];
+
+// Paper options for premium envelopes
+export const envelopePaperOptionsPremium = [
+  { id: "couche", label: "Couchê" },
+  { id: "especial", label: "Papel especial" },
+  { id: "cartao", label: "Papel cartão" }
+];
+
+// Printing options for simple envelopes
+export const envelopePrintingOptions = [
+  { id: "sem-impressao", label: "Sem impressão" },
+  { id: "simples", label: "Impressão simples (1 cor)" },
+  { id: "offset", label: "Impressão offset" }
+];
+
+// Finishing options for premium envelopes (multi-select)
+export const envelopeFinishingOptions = [
+  { id: "hot-stamping", label: "Hot stamping" },
+  { id: "relevo", label: "Relevo" },
+  { id: "verniz-localizado", label: "Verniz localizado" },
+  { id: "laminacao", label: "Laminação fosca ou brilho" }
+];
+
+// Closure options for premium envelopes
+export const envelopeClosureOptions = [
+  { id: "sem-fechamento", label: "Sem fechamento" },
+  { id: "aba-simples", label: "Aba simples" },
+  { id: "fita-adesiva", label: "Fita adesiva" }
+];
+
+// ========================
+// PAPEL DE SEDA OPTIONS
+// ========================
+
+// Papel de seda type options
+export const papelSedaTypeOptions = [
+  { id: "branco", label: "Papel de seda branco" },
+  { id: "colorido", label: "Papel de seda colorido" },
+  { id: "personalizado", label: "Papel de seda personalizado" }
+];
+
+// Papel de seda printing options
+export const papelSedaPrintingOptions = [
+  { id: "sem-impressao", label: "Sem impressão" },
+  { id: "1-cor", label: "Impressão 1 cor" },
+  { id: "multicores", label: "Impressão multicores" }
+];
+
+// Papel de seda application options
+export const papelSedaApplicationOptions = [
+  { id: "protecao", label: "Proteção do produto" },
+  { id: "envolvimento", label: "Envolvimento para apresentação" },
+  { id: "unboxing", label: "Experiência de unboxing" }
+];
+
+// ========================
+// ETIQUETA OPTIONS
+// ========================
+
+// Etiqueta type options
+export const etiquetaTypeOptions = [
+  { id: "adesiva", label: "Etiqueta adesiva" },
+  { id: "amarracao", label: "Etiqueta para amarração" },
+  { id: "promocional", label: "Etiqueta promocional" },
+  { id: "informativa", label: "Etiqueta informativa" }
+];
+
+// Etiqueta material options
+export const etiquetaMaterialOptions = [
+  { id: "couche", label: "Papel couchê" },
+  { id: "offset", label: "Papel offset" },
+  { id: "kraft", label: "Papel kraft" }
+];
+
+// Etiqueta printing options
+export const etiquetaPrintingOptions = [
+  { id: "1-cor", label: "1 cor" },
+  { id: "multicor", label: "Multicor" },
+  { id: "sem-impressao", label: "Sem impressão" }
+];
+
+// Etiqueta finishing options (multi-select)
+export const etiquetaFinishingOptions = [
+  { id: "verniz", label: "Verniz" },
+  { id: "laminacao", label: "Laminação" },
+  { id: "corte-especial", label: "Corte especial" },
+  { id: "sem-acabamento", label: "Sem acabamento" }
+];
+
+// ========================
+// TAG OPTIONS
+// ========================
+
+// Tag type options
+export const tagTypeOptions = [
+  { id: "simples", label: "Tag simples" },
+  { id: "personalizada", label: "Tag personalizada" },
+  { id: "promocional", label: "Tag promocional" }
+];
+
+// Tag material options
+export const tagMaterialOptions = [
+  { id: "cartao", label: "Papel cartão" },
+  { id: "especial", label: "Papel especial" },
+  { id: "kraft", label: "Kraft" }
+];
+
+// Tag printing options
+export const tagPrintingOptions = [
+  { id: "1-cor", label: "1 cor" },
+  { id: "multicor", label: "Multicor" }
+];
+
+// Tag finishing options (multi-select)
+export const tagFinishingOptions = [
+  { id: "furo-simples", label: "Furo simples" },
+  { id: "hot-stamping", label: "Hot stamping" },
+  { id: "relevo", label: "Relevo" },
+  { id: "verniz-localizado", label: "Verniz localizado" },
+  { id: "sem-acabamento", label: "Sem acabamento" }
+];
+
+// Tag cord options
+export const tagCordOptions = [
+  { id: "sem-cordao", label: "Sem cordão" },
+  { id: "algodao", label: "Cordão algodão" },
+  { id: "sintetico", label: "Cordão sintético" },
+  { id: "fita", label: "Fita" }
+];
+
 // Flow step definitions
 export type FlowStep = 
   | "segment"
   | "product"
+  // Bag steps
   | "bag-type"
   | "bag-paper-simple"
   | "bag-handle-simple"
   | "bag-finishing"
   | "bag-paper-premium"
   | "bag-handle-premium"
+  // Box steps
   | "box-type"
   | "box-structure-simple"
   | "box-paper-simple"
@@ -143,34 +314,107 @@ export type FlowStep =
   | "box-paper-premium"
   | "box-finishing"
   | "box-extras"
+  // Envelope steps
+  | "envelope-type"
+  | "envelope-format-simple"
+  | "envelope-paper-simple"
+  | "envelope-printing"
+  | "envelope-format-premium"
+  | "envelope-paper-premium"
+  | "envelope-finishing"
+  | "envelope-closure"
+  // Papel de seda steps
+  | "papel-seda-type"
+  | "papel-seda-printing"
+  | "papel-seda-application"
+  // Etiqueta steps
+  | "etiqueta-type"
+  | "etiqueta-material"
+  | "etiqueta-printing"
+  | "etiqueta-finishing"
+  // Tag steps
+  | "tag-type"
+  | "tag-material"
+  | "tag-printing"
+  | "tag-finishing"
+  | "tag-cord"
+  // Final step
   | "confirmation";
 
 export interface SelectionState {
   segment: string | null;
   product: string | null;
+  // Bag selections
   bagType: string | null;
   bagPaper: string | null;
   bagHandle: string | null;
   bagFinishing: string[];
+  // Box selections
   boxType: string | null;
   boxStructure: string | null;
   boxPaper: string | null;
   boxPrinting: string | null;
   boxFinishing: string[];
   boxExtras: string[];
+  // Envelope selections
+  envelopeType: string | null;
+  envelopeFormat: string | null;
+  envelopePaper: string | null;
+  envelopePrinting: string | null;
+  envelopeFinishing: string[];
+  envelopeClosure: string | null;
+  // Papel de seda selections
+  papelSedaType: string | null;
+  papelSedaPrinting: string | null;
+  papelSedaApplication: string | null;
+  // Etiqueta selections
+  etiquetaType: string | null;
+  etiquetaMaterial: string | null;
+  etiquetaPrinting: string | null;
+  etiquetaFinishing: string[];
+  // Tag selections
+  tagType: string | null;
+  tagMaterial: string | null;
+  tagPrinting: string | null;
+  tagFinishing: string[];
+  tagCord: string | null;
 }
 
 export const initialSelectionState: SelectionState = {
   segment: null,
   product: null,
+  // Bag
   bagType: null,
   bagPaper: null,
   bagHandle: null,
   bagFinishing: [],
+  // Box
   boxType: null,
   boxStructure: null,
   boxPaper: null,
   boxPrinting: null,
   boxFinishing: [],
-  boxExtras: []
+  boxExtras: [],
+  // Envelope
+  envelopeType: null,
+  envelopeFormat: null,
+  envelopePaper: null,
+  envelopePrinting: null,
+  envelopeFinishing: [],
+  envelopeClosure: null,
+  // Papel de seda
+  papelSedaType: null,
+  papelSedaPrinting: null,
+  papelSedaApplication: null,
+  // Etiqueta
+  etiquetaType: null,
+  etiquetaMaterial: null,
+  etiquetaPrinting: null,
+  etiquetaFinishing: [],
+  // Tag
+  tagType: null,
+  tagMaterial: null,
+  tagPrinting: null,
+  tagFinishing: [],
+  tagCord: null
 };

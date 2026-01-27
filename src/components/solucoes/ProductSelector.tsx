@@ -27,12 +27,14 @@ import {
   FlowStep,
   SelectionState,
   initialSelectionState,
+  // Bag options
   bagTypeOptions,
   bagPaperOptionsSimple,
   bagPaperOptionsPremium,
   bagHandleOptionsSimple,
   bagHandleOptionsPremium,
   bagFinishingOptions,
+  // Box options
   boxTypeOptions,
   boxStructureOptionsSimple,
   boxStructureOptionsPremium,
@@ -40,7 +42,31 @@ import {
   boxPaperOptionsPremium,
   boxPrintingOptions,
   boxFinishingOptions,
-  boxExtraOptions
+  boxExtraOptions,
+  // Envelope options
+  envelopeTypeOptions,
+  envelopeFormatOptionsSimple,
+  envelopeFormatOptionsPremium,
+  envelopePaperOptionsSimple,
+  envelopePaperOptionsPremium,
+  envelopePrintingOptions,
+  envelopeFinishingOptions,
+  envelopeClosureOptions,
+  // Papel de seda options
+  papelSedaTypeOptions,
+  papelSedaPrintingOptions,
+  papelSedaApplicationOptions,
+  // Etiqueta options
+  etiquetaTypeOptions,
+  etiquetaMaterialOptions,
+  etiquetaPrintingOptions,
+  etiquetaFinishingOptions,
+  // Tag options
+  tagTypeOptions,
+  tagMaterialOptions,
+  tagPrintingOptions,
+  tagFinishingOptions,
+  tagCordOptions
 } from "./ProductFlowData";
 
 // Segments definition
@@ -162,17 +188,34 @@ export function ProductSelector() {
   const handleProductSelect = useCallback((productId: string) => {
     setSelection(prev => ({ ...prev, product: productId }));
     
-    if (productId === "sacolas") {
-      setStep("bag-type");
-    } else if (productId === "caixas") {
-      setStep("box-type");
-    } else {
-      // For other products, go directly to confirmation
-      setStep("confirmation");
+    switch (productId) {
+      case "sacolas":
+        setStep("bag-type");
+        break;
+      case "caixas":
+        setStep("box-type");
+        break;
+      case "envelopes":
+        setStep("envelope-type");
+        break;
+      case "papel-seda":
+        setStep("papel-seda-type");
+        break;
+      case "etiquetas":
+        setStep("etiqueta-type");
+        break;
+      case "tags":
+        setStep("tag-type");
+        break;
+      default:
+        // For other products (sacos, guardanapos, papel-barreira), go directly to confirmation
+        setStep("confirmation");
     }
   }, []);
 
-  // Handle bag type selection
+  // ========================
+  // BAG HANDLERS
+  // ========================
   const handleBagTypeSelect = useCallback((typeId: string) => {
     setSelection(prev => ({ ...prev, bagType: typeId }));
     if (typeId === "sem-enobrecimento") {
@@ -182,19 +225,16 @@ export function ProductSelector() {
     }
   }, []);
 
-  // Handle bag paper selection (simple)
   const handleBagPaperSimpleSelect = useCallback((paperId: string) => {
     setSelection(prev => ({ ...prev, bagPaper: paperId }));
     setStep("bag-handle-simple");
   }, []);
 
-  // Handle bag handle selection (simple) - goes to confirmation
   const handleBagHandleSimpleSelect = useCallback((handleId: string) => {
     setSelection(prev => ({ ...prev, bagHandle: handleId }));
     setStep("confirmation");
   }, []);
 
-  // Handle bag finishing toggle (multi-select)
   const handleBagFinishingToggle = useCallback((finishId: string) => {
     setSelection(prev => ({
       ...prev,
@@ -204,24 +244,23 @@ export function ProductSelector() {
     }));
   }, []);
 
-  // Confirm bag finishing and proceed
   const handleBagFinishingConfirm = useCallback(() => {
     setStep("bag-paper-premium");
   }, []);
 
-  // Handle bag paper selection (premium)
   const handleBagPaperPremiumSelect = useCallback((paperId: string) => {
     setSelection(prev => ({ ...prev, bagPaper: paperId }));
     setStep("bag-handle-premium");
   }, []);
 
-  // Handle bag handle selection (premium) - goes to confirmation
   const handleBagHandlePremiumSelect = useCallback((handleId: string) => {
     setSelection(prev => ({ ...prev, bagHandle: handleId }));
     setStep("confirmation");
   }, []);
 
-  // Handle box type selection
+  // ========================
+  // BOX HANDLERS
+  // ========================
   const handleBoxTypeSelect = useCallback((typeId: string) => {
     setSelection(prev => ({ ...prev, boxType: typeId }));
     if (typeId === "simples") {
@@ -231,37 +270,31 @@ export function ProductSelector() {
     }
   }, []);
 
-  // Handle box structure selection (simple)
   const handleBoxStructureSimpleSelect = useCallback((structureId: string) => {
     setSelection(prev => ({ ...prev, boxStructure: structureId }));
     setStep("box-paper-simple");
   }, []);
 
-  // Handle box paper selection (simple)
   const handleBoxPaperSimpleSelect = useCallback((paperId: string) => {
     setSelection(prev => ({ ...prev, boxPaper: paperId }));
     setStep("box-printing");
   }, []);
 
-  // Handle box printing selection (simple) - goes to confirmation
   const handleBoxPrintingSelect = useCallback((printingId: string) => {
     setSelection(prev => ({ ...prev, boxPrinting: printingId }));
     setStep("confirmation");
   }, []);
 
-  // Handle box structure selection (premium)
   const handleBoxStructurePremiumSelect = useCallback((structureId: string) => {
     setSelection(prev => ({ ...prev, boxStructure: structureId }));
     setStep("box-paper-premium");
   }, []);
 
-  // Handle box paper selection (premium)
   const handleBoxPaperPremiumSelect = useCallback((paperId: string) => {
     setSelection(prev => ({ ...prev, boxPaper: paperId }));
     setStep("box-finishing");
   }, []);
 
-  // Handle box finishing toggle (multi-select)
   const handleBoxFinishingToggle = useCallback((finishId: string) => {
     setSelection(prev => ({
       ...prev,
@@ -271,12 +304,10 @@ export function ProductSelector() {
     }));
   }, []);
 
-  // Confirm box finishing and proceed
   const handleBoxFinishingConfirm = useCallback(() => {
     setStep("box-extras");
   }, []);
 
-  // Handle box extras toggle (multi-select)
   const handleBoxExtrasToggle = useCallback((extraId: string) => {
     setSelection(prev => ({
       ...prev,
@@ -286,12 +317,153 @@ export function ProductSelector() {
     }));
   }, []);
 
-  // Confirm box extras and proceed to confirmation
   const handleBoxExtrasConfirm = useCallback(() => {
     setStep("confirmation");
   }, []);
 
-  // Build summary items for the confirmation
+  // ========================
+  // ENVELOPE HANDLERS
+  // ========================
+  const handleEnvelopeTypeSelect = useCallback((typeId: string) => {
+    setSelection(prev => ({ ...prev, envelopeType: typeId }));
+    if (typeId === "simples") {
+      setStep("envelope-format-simple");
+    } else {
+      setStep("envelope-format-premium");
+    }
+  }, []);
+
+  const handleEnvelopeFormatSimpleSelect = useCallback((formatId: string) => {
+    setSelection(prev => ({ ...prev, envelopeFormat: formatId }));
+    setStep("envelope-paper-simple");
+  }, []);
+
+  const handleEnvelopePaperSimpleSelect = useCallback((paperId: string) => {
+    setSelection(prev => ({ ...prev, envelopePaper: paperId }));
+    setStep("envelope-printing");
+  }, []);
+
+  const handleEnvelopePrintingSelect = useCallback((printingId: string) => {
+    setSelection(prev => ({ ...prev, envelopePrinting: printingId }));
+    setStep("confirmation");
+  }, []);
+
+  const handleEnvelopeFormatPremiumSelect = useCallback((formatId: string) => {
+    setSelection(prev => ({ ...prev, envelopeFormat: formatId }));
+    setStep("envelope-paper-premium");
+  }, []);
+
+  const handleEnvelopePaperPremiumSelect = useCallback((paperId: string) => {
+    setSelection(prev => ({ ...prev, envelopePaper: paperId }));
+    setStep("envelope-finishing");
+  }, []);
+
+  const handleEnvelopeFinishingToggle = useCallback((finishId: string) => {
+    setSelection(prev => ({
+      ...prev,
+      envelopeFinishing: prev.envelopeFinishing.includes(finishId)
+        ? prev.envelopeFinishing.filter(f => f !== finishId)
+        : [...prev.envelopeFinishing, finishId]
+    }));
+  }, []);
+
+  const handleEnvelopeFinishingConfirm = useCallback(() => {
+    setStep("envelope-closure");
+  }, []);
+
+  const handleEnvelopeClosureSelect = useCallback((closureId: string) => {
+    setSelection(prev => ({ ...prev, envelopeClosure: closureId }));
+    setStep("confirmation");
+  }, []);
+
+  // ========================
+  // PAPEL DE SEDA HANDLERS
+  // ========================
+  const handlePapelSedaTypeSelect = useCallback((typeId: string) => {
+    setSelection(prev => ({ ...prev, papelSedaType: typeId }));
+    setStep("papel-seda-printing");
+  }, []);
+
+  const handlePapelSedaPrintingSelect = useCallback((printingId: string) => {
+    setSelection(prev => ({ ...prev, papelSedaPrinting: printingId }));
+    setStep("papel-seda-application");
+  }, []);
+
+  const handlePapelSedaApplicationSelect = useCallback((applicationId: string) => {
+    setSelection(prev => ({ ...prev, papelSedaApplication: applicationId }));
+    setStep("confirmation");
+  }, []);
+
+  // ========================
+  // ETIQUETA HANDLERS
+  // ========================
+  const handleEtiquetaTypeSelect = useCallback((typeId: string) => {
+    setSelection(prev => ({ ...prev, etiquetaType: typeId }));
+    setStep("etiqueta-material");
+  }, []);
+
+  const handleEtiquetaMaterialSelect = useCallback((materialId: string) => {
+    setSelection(prev => ({ ...prev, etiquetaMaterial: materialId }));
+    setStep("etiqueta-printing");
+  }, []);
+
+  const handleEtiquetaPrintingSelect = useCallback((printingId: string) => {
+    setSelection(prev => ({ ...prev, etiquetaPrinting: printingId }));
+    setStep("etiqueta-finishing");
+  }, []);
+
+  const handleEtiquetaFinishingToggle = useCallback((finishId: string) => {
+    setSelection(prev => ({
+      ...prev,
+      etiquetaFinishing: prev.etiquetaFinishing.includes(finishId)
+        ? prev.etiquetaFinishing.filter(f => f !== finishId)
+        : [...prev.etiquetaFinishing, finishId]
+    }));
+  }, []);
+
+  const handleEtiquetaFinishingConfirm = useCallback(() => {
+    setStep("confirmation");
+  }, []);
+
+  // ========================
+  // TAG HANDLERS
+  // ========================
+  const handleTagTypeSelect = useCallback((typeId: string) => {
+    setSelection(prev => ({ ...prev, tagType: typeId }));
+    setStep("tag-material");
+  }, []);
+
+  const handleTagMaterialSelect = useCallback((materialId: string) => {
+    setSelection(prev => ({ ...prev, tagMaterial: materialId }));
+    setStep("tag-printing");
+  }, []);
+
+  const handleTagPrintingSelect = useCallback((printingId: string) => {
+    setSelection(prev => ({ ...prev, tagPrinting: printingId }));
+    setStep("tag-finishing");
+  }, []);
+
+  const handleTagFinishingToggle = useCallback((finishId: string) => {
+    setSelection(prev => ({
+      ...prev,
+      tagFinishing: prev.tagFinishing.includes(finishId)
+        ? prev.tagFinishing.filter(f => f !== finishId)
+        : [...prev.tagFinishing, finishId]
+    }));
+  }, []);
+
+  const handleTagFinishingConfirm = useCallback(() => {
+    setStep("tag-cord");
+  }, []);
+
+  const handleTagCordSelect = useCallback((cordId: string) => {
+    setSelection(prev => ({ ...prev, tagCord: cordId }));
+    setStep("confirmation");
+  }, []);
+
+  // ========================
+  // BUILD SUMMARY ITEMS
+  // ========================
   const buildSummaryItems = useCallback(() => {
     const items: { label: string; value: string | string[] }[] = [];
     
@@ -301,6 +473,7 @@ export function ProductSelector() {
     const productLabel = currentProducts.find(p => p.id === selection.product)?.label;
     if (productLabel) items.push({ label: "Produto", value: productLabel });
 
+    // Bag summary
     if (selection.product === "sacolas") {
       const bagTypeLabel = bagTypeOptions.find(t => t.id === selection.bagType)?.label;
       if (bagTypeLabel) items.push({ label: "Tipo de Sacola", value: bagTypeLabel });
@@ -321,6 +494,7 @@ export function ProductSelector() {
       if (handleLabel) items.push({ label: "Tipo de Alça", value: handleLabel });
     }
 
+    // Box summary
     if (selection.product === "caixas") {
       const boxTypeLabel = boxTypeOptions.find(t => t.id === selection.boxType)?.label;
       if (boxTypeLabel) items.push({ label: "Tipo de Caixa", value: boxTypeLabel });
@@ -351,6 +525,90 @@ export function ProductSelector() {
         );
         items.push({ label: "Extras", value: extrasLabels });
       }
+    }
+
+    // Envelope summary
+    if (selection.product === "envelopes") {
+      const envelopeTypeLabel = envelopeTypeOptions.find(t => t.id === selection.envelopeType)?.label;
+      if (envelopeTypeLabel) items.push({ label: "Tipo de Envelope", value: envelopeTypeLabel });
+
+      const formatOptions = selection.envelopeType === "enobrecido" ? envelopeFormatOptionsPremium : envelopeFormatOptionsSimple;
+      const formatLabel = formatOptions.find(f => f.id === selection.envelopeFormat)?.label;
+      if (formatLabel) items.push({ label: "Formato", value: formatLabel });
+
+      const paperOptions = selection.envelopeType === "enobrecido" ? envelopePaperOptionsPremium : envelopePaperOptionsSimple;
+      const paperLabel = paperOptions.find(p => p.id === selection.envelopePaper)?.label;
+      if (paperLabel) items.push({ label: "Tipo de Papel", value: paperLabel });
+
+      if (selection.envelopeType === "simples") {
+        const printingLabel = envelopePrintingOptions.find(p => p.id === selection.envelopePrinting)?.label;
+        if (printingLabel) items.push({ label: "Impressão", value: printingLabel });
+      }
+
+      if (selection.envelopeType === "enobrecido" && selection.envelopeFinishing.length > 0) {
+        const finishingLabels = selection.envelopeFinishing.map(f => 
+          envelopeFinishingOptions.find(opt => opt.id === f)?.label || f
+        );
+        items.push({ label: "Acabamentos", value: finishingLabels });
+      }
+
+      if (selection.envelopeType === "enobrecido") {
+        const closureLabel = envelopeClosureOptions.find(c => c.id === selection.envelopeClosure)?.label;
+        if (closureLabel) items.push({ label: "Fechamento", value: closureLabel });
+      }
+    }
+
+    // Papel de seda summary
+    if (selection.product === "papel-seda") {
+      const typeLabel = papelSedaTypeOptions.find(t => t.id === selection.papelSedaType)?.label;
+      if (typeLabel) items.push({ label: "Tipo", value: typeLabel });
+
+      const printingLabel = papelSedaPrintingOptions.find(p => p.id === selection.papelSedaPrinting)?.label;
+      if (printingLabel) items.push({ label: "Personalização", value: printingLabel });
+
+      const applicationLabel = papelSedaApplicationOptions.find(a => a.id === selection.papelSedaApplication)?.label;
+      if (applicationLabel) items.push({ label: "Aplicação", value: applicationLabel });
+    }
+
+    // Etiqueta summary
+    if (selection.product === "etiquetas") {
+      const typeLabel = etiquetaTypeOptions.find(t => t.id === selection.etiquetaType)?.label;
+      if (typeLabel) items.push({ label: "Tipo de Etiqueta", value: typeLabel });
+
+      const materialLabel = etiquetaMaterialOptions.find(m => m.id === selection.etiquetaMaterial)?.label;
+      if (materialLabel) items.push({ label: "Material", value: materialLabel });
+
+      const printingLabel = etiquetaPrintingOptions.find(p => p.id === selection.etiquetaPrinting)?.label;
+      if (printingLabel) items.push({ label: "Impressão", value: printingLabel });
+
+      if (selection.etiquetaFinishing.length > 0) {
+        const finishingLabels = selection.etiquetaFinishing.map(f => 
+          etiquetaFinishingOptions.find(opt => opt.id === f)?.label || f
+        );
+        items.push({ label: "Acabamentos", value: finishingLabels });
+      }
+    }
+
+    // Tag summary
+    if (selection.product === "tags") {
+      const typeLabel = tagTypeOptions.find(t => t.id === selection.tagType)?.label;
+      if (typeLabel) items.push({ label: "Tipo de Tag", value: typeLabel });
+
+      const materialLabel = tagMaterialOptions.find(m => m.id === selection.tagMaterial)?.label;
+      if (materialLabel) items.push({ label: "Material", value: materialLabel });
+
+      const printingLabel = tagPrintingOptions.find(p => p.id === selection.tagPrinting)?.label;
+      if (printingLabel) items.push({ label: "Impressão", value: printingLabel });
+
+      if (selection.tagFinishing.length > 0) {
+        const finishingLabels = selection.tagFinishing.map(f => 
+          tagFinishingOptions.find(opt => opt.id === f)?.label || f
+        );
+        items.push({ label: "Acabamentos", value: finishingLabels });
+      }
+
+      const cordLabel = tagCordOptions.find(c => c.id === selection.tagCord)?.label;
+      if (cordLabel) items.push({ label: "Cordão / Amarração", value: cordLabel });
     }
 
     return items;
@@ -384,11 +642,27 @@ export function ProductSelector() {
 
     if (selection.product) {
       const productLabel = currentProducts.find(p => p.id === selection.product)?.label || "";
-      items.push({ label: productLabel, isCurrent: step === "confirmation" || step.startsWith("bag-") || step.startsWith("box-") });
+      items.push({ label: productLabel, isCurrent: true });
     }
 
     return items;
-  }, [selection, currentProducts, step, handleBackToSegment, handleBackToProduct]);
+  }, [selection, currentProducts, handleBackToSegment, handleBackToProduct]);
+
+  // Get current step icon for preview
+  const getCurrentIcon = () => {
+    if (selection.product === "sacolas") return ShoppingBag;
+    if (selection.product === "caixas") return Box;
+    if (selection.product === "envelopes") return FileText;
+    if (selection.product === "papel-seda") return Scissors;
+    if (selection.product === "etiquetas") return Tag;
+    if (selection.product === "tags") return Tag;
+    if (selection.segment) {
+      return segments.find(s => s.id === selection.segment)?.icon || Package;
+    }
+    return Package;
+  };
+
+  const CurrentIcon = getCurrentIcon();
 
   // Render step content
   const renderStepContent = () => {
@@ -445,6 +719,9 @@ export function ProductSelector() {
           </motion.div>
         );
 
+      // ========================
+      // BAG STEPS
+      // ========================
       case "bag-type":
         return (
           <motion.div
@@ -607,6 +884,9 @@ export function ProductSelector() {
           </motion.div>
         );
 
+      // ========================
+      // BOX STEPS
+      // ========================
       case "box-type":
         return (
           <motion.div
@@ -829,6 +1109,553 @@ export function ProductSelector() {
           </motion.div>
         );
 
+      // ========================
+      // ENVELOPE STEPS
+      // ========================
+      case "envelope-type":
+        return (
+          <motion.div
+            key="envelope-type"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual tipo de envelope você procura?
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {envelopeTypeOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  description={option.description}
+                  onClick={() => handleEnvelopeTypeSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case "envelope-format-simple":
+        return (
+          <motion.div
+            key="envelope-format-simple"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual o formato do envelope?
+            </h3>
+            <div className="grid grid-cols-2 gap-4">
+              {envelopeFormatOptionsSimple.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handleEnvelopeFormatSimpleSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case "envelope-paper-simple":
+        return (
+          <motion.div
+            key="envelope-paper-simple"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual o tipo de papel?
+            </h3>
+            <div className="grid grid-cols-3 gap-4">
+              {envelopePaperOptionsSimple.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handleEnvelopePaperSimpleSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case "envelope-printing":
+        return (
+          <motion.div
+            key="envelope-printing"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual tipo de impressão?
+            </h3>
+            <div className="grid grid-cols-3 gap-4">
+              {envelopePrintingOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handleEnvelopePrintingSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case "envelope-format-premium":
+        return (
+          <motion.div
+            key="envelope-format-premium"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual o formato do envelope?
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {envelopeFormatOptionsPremium.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handleEnvelopeFormatPremiumSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case "envelope-paper-premium":
+        return (
+          <motion.div
+            key="envelope-paper-premium"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual o tipo de papel?
+            </h3>
+            <div className="grid grid-cols-3 gap-4">
+              {envelopePaperOptionsPremium.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handleEnvelopePaperPremiumSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case "envelope-finishing":
+        return (
+          <motion.div
+            key="envelope-finishing"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Quais acabamentos você deseja?
+            </h3>
+            <p className="text-sm text-muted-foreground">Selecione um ou mais acabamentos</p>
+            <div className="grid grid-cols-2 gap-4">
+              {envelopeFinishingOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  isSelected={selection.envelopeFinishing.includes(option.id)}
+                  isMultiSelect
+                  onClick={() => handleEnvelopeFinishingToggle(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+            <Button 
+              variant="cta" 
+              className="w-full mt-4"
+              onClick={handleEnvelopeFinishingConfirm}
+              disabled={selection.envelopeFinishing.length === 0}
+            >
+              Continuar
+            </Button>
+          </motion.div>
+        );
+
+      case "envelope-closure":
+        return (
+          <motion.div
+            key="envelope-closure"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual tipo de fechamento?
+            </h3>
+            <div className="grid grid-cols-3 gap-4">
+              {envelopeClosureOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handleEnvelopeClosureSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      // ========================
+      // PAPEL DE SEDA STEPS
+      // ========================
+      case "papel-seda-type":
+        return (
+          <motion.div
+            key="papel-seda-type"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual tipo de papel de seda?
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {papelSedaTypeOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handlePapelSedaTypeSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case "papel-seda-printing":
+        return (
+          <motion.div
+            key="papel-seda-printing"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Deseja personalização?
+            </h3>
+            <div className="grid grid-cols-3 gap-4">
+              {papelSedaPrintingOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handlePapelSedaPrintingSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case "papel-seda-application":
+        return (
+          <motion.div
+            key="papel-seda-application"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual a principal aplicação?
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {papelSedaApplicationOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handlePapelSedaApplicationSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      // ========================
+      // ETIQUETA STEPS
+      // ========================
+      case "etiqueta-type":
+        return (
+          <motion.div
+            key="etiqueta-type"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual tipo de etiqueta você precisa?
+            </h3>
+            <div className="grid grid-cols-2 gap-4">
+              {etiquetaTypeOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handleEtiquetaTypeSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case "etiqueta-material":
+        return (
+          <motion.div
+            key="etiqueta-material"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual o material da etiqueta?
+            </h3>
+            <div className="grid grid-cols-3 gap-4">
+              {etiquetaMaterialOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handleEtiquetaMaterialSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case "etiqueta-printing":
+        return (
+          <motion.div
+            key="etiqueta-printing"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual tipo de impressão?
+            </h3>
+            <div className="grid grid-cols-3 gap-4">
+              {etiquetaPrintingOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handleEtiquetaPrintingSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case "etiqueta-finishing":
+        return (
+          <motion.div
+            key="etiqueta-finishing"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Deseja algum acabamento?
+            </h3>
+            <p className="text-sm text-muted-foreground">Selecione uma ou mais opções</p>
+            <div className="grid grid-cols-2 gap-4">
+              {etiquetaFinishingOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  isSelected={selection.etiquetaFinishing.includes(option.id)}
+                  isMultiSelect
+                  onClick={() => handleEtiquetaFinishingToggle(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+            <Button 
+              variant="cta" 
+              className="w-full mt-4"
+              onClick={handleEtiquetaFinishingConfirm}
+            >
+              {selection.etiquetaFinishing.length > 0 ? "Continuar" : "Pular"}
+            </Button>
+          </motion.div>
+        );
+
+      // ========================
+      // TAG STEPS
+      // ========================
+      case "tag-type":
+        return (
+          <motion.div
+            key="tag-type"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual tipo de tag você procura?
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {tagTypeOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handleTagTypeSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case "tag-material":
+        return (
+          <motion.div
+            key="tag-material"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual o material da tag?
+            </h3>
+            <div className="grid grid-cols-3 gap-4">
+              {tagMaterialOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handleTagMaterialSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case "tag-printing":
+        return (
+          <motion.div
+            key="tag-printing"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Qual tipo de impressão?
+            </h3>
+            <div className="grid grid-cols-2 gap-4">
+              {tagPrintingOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handleTagPrintingSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      case "tag-finishing":
+        return (
+          <motion.div
+            key="tag-finishing"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Deseja algum acabamento?
+            </h3>
+            <p className="text-sm text-muted-foreground">Selecione uma ou mais opções</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {tagFinishingOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  isSelected={selection.tagFinishing.includes(option.id)}
+                  isMultiSelect
+                  onClick={() => handleTagFinishingToggle(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+            <Button 
+              variant="cta" 
+              className="w-full mt-4"
+              onClick={handleTagFinishingConfirm}
+            >
+              {selection.tagFinishing.length > 0 ? "Continuar" : "Pular"}
+            </Button>
+          </motion.div>
+        );
+
+      case "tag-cord":
+        return (
+          <motion.div
+            key="tag-cord"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-4"
+          >
+            <h3 className="text-xl font-heading font-semibold text-foreground">
+              Deseja cordão ou amarração?
+            </h3>
+            <div className="grid grid-cols-2 gap-4">
+              {tagCordOptions.map((option, index) => (
+                <SelectionCard
+                  key={option.id}
+                  label={option.label}
+                  onClick={() => handleTagCordSelect(option.id)}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        );
+
+      // ========================
+      // CONFIRMATION
+      // ========================
       case "confirmation":
         return (
           <FlowSummary 
@@ -841,18 +1668,6 @@ export function ProductSelector() {
         return null;
     }
   };
-
-  // Get current step icon for preview
-  const getCurrentIcon = () => {
-    if (selection.product === "sacolas") return ShoppingBag;
-    if (selection.product === "caixas") return Box;
-    if (selection.segment) {
-      return segments.find(s => s.id === selection.segment)?.icon || Package;
-    }
-    return Package;
-  };
-
-  const CurrentIcon = getCurrentIcon();
 
   return (
     <section className="py-20 md:py-28">
