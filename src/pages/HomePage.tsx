@@ -33,7 +33,7 @@ import sectorFood from "@/assets/sector-food.jpg";
 
 // Client logos - Alphabetical order
 import logoAramis from "@/assets/clients/aramis.png";
-import logoArezzo from "@/assets/clients/arezzo.png";
+
 import logoCarolinaHerrera from "@/assets/clients/carolina-herrera.png";
 import logoClaro from "@/assets/clients/claro.png";
 import logoConstance from "@/assets/clients/constance.png";
@@ -52,7 +52,7 @@ import logoVivo from "@/assets/clients/vivo.png";
 
 const clients = [
   { name: "Aramis", logo: logoAramis },
-  { name: "Arezzo", logo: logoArezzo },
+  
   { name: "Carolina Herrera", logo: logoCarolinaHerrera },
   { name: "Claro", logo: logoClaro },
   { name: "Constance", logo: logoConstance },
