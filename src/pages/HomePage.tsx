@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { 
-  CheckCircle2, 
   Leaf, 
   ArrowRight,
   Recycle,
