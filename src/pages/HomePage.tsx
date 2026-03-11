@@ -9,14 +9,10 @@ import {
   ShoppingBag,
   Sparkles,
   Utensils,
-  Pill,
   Store,
   Package,
   TreePine,
-  Shirt,
-  Footprints,
   Gem,
-  Cookie,
   Zap,
   Award,
   ShieldCheck
@@ -27,9 +23,11 @@ import heroFactory from "@/assets/hero-factory.jpg";
 import sustainabilityHero from "@/assets/sustainability-hero.jpg";
 import cardPrintmoda from "@/assets/card-printmoda.jpg";
 import cardPrintfood from "@/assets/card-printfood.jpg";
-import sectorFarmacias from "@/assets/sector-farmacias.jpg";
-import sectorSupermercados from "@/assets/sector-supermercados.jpg";
-import sectorFood from "@/assets/sector-food.jpg";
+import sectorModa from "@/assets/sector-moda.jpg";
+import sectorSuperFarma from "@/assets/sector-supermercados-farmacias.jpg";
+import sectorCosmeticos from "@/assets/sector-cosmeticos.jpg";
+import sectorFoodService from "@/assets/sector-food-service.jpg";
+import sectorJoias from "@/assets/sector-joias.jpg";
 
 // Client logos - Alphabetical order
 import logoAramis from "@/assets/clients/aramis.png";
@@ -212,7 +210,7 @@ export default function HomePage() {
 
           {/* Sector Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Vestuário */}
+            {/* Moda */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -220,11 +218,11 @@ export default function HomePage() {
               transition={{ delay: 0.1 }}
               className="bg-card rounded-2xl shadow-medium overflow-hidden border border-border hover:shadow-strong transition-shadow duration-300 group flex flex-col"
             >
-              <div className="relative h-40 overflow-hidden bg-primary/10 flex items-center justify-center">
-                <Shirt className="w-16 h-16 text-primary/40" />
+              <div className="relative h-40 overflow-hidden">
+                <img src={sectorModa} alt="Embalagens Moda" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-6">
-                  <h3 className="text-xl font-heading font-bold text-white">Vestuário</h3>
+                  <h3 className="text-xl font-heading font-bold text-white">Moda</h3>
                 </div>
               </div>
               <div className="p-5 flex flex-col flex-grow">
@@ -245,7 +243,7 @@ export default function HomePage() {
               </div>
             </motion.div>
 
-            {/* Calçados */}
+            {/* Supermercados/Farmácias */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -253,16 +251,16 @@ export default function HomePage() {
               transition={{ delay: 0.15 }}
               className="bg-card rounded-2xl shadow-medium overflow-hidden border border-border hover:shadow-strong transition-shadow duration-300 group flex flex-col"
             >
-              <div className="relative h-40 overflow-hidden bg-secondary/10 flex items-center justify-center">
-                <Footprints className="w-16 h-16 text-secondary/40" />
+              <div className="relative h-40 overflow-hidden">
+                <img src={sectorSuperFarma} alt="Embalagens Supermercados e Farmácias" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-6">
-                  <h3 className="text-xl font-heading font-bold text-white">Calçados</h3>
+                  <h3 className="text-xl font-heading font-bold text-white">Supermercados/Farmácias</h3>
                 </div>
               </div>
               <div className="p-5 flex flex-col flex-grow">
                 <div className="space-y-2 mb-5 flex-grow">
-                  {["Sacolas", "Caixas", "Papel de Seda", "Etiquetas", "Tags"].map((item) => (
+                  {["Sacolas", "Sacos", "Caixas"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0" />
                       <span className="text-foreground text-sm">{item}</span>
@@ -286,8 +284,8 @@ export default function HomePage() {
               transition={{ delay: 0.2 }}
               className="bg-card rounded-2xl shadow-medium overflow-hidden border border-border hover:shadow-strong transition-shadow duration-300 group flex flex-col"
             >
-              <div className="relative h-40 overflow-hidden bg-primary/10 flex items-center justify-center">
-                <Sparkles className="w-16 h-16 text-primary/40" />
+              <div className="relative h-40 overflow-hidden">
+                <img src={sectorCosmeticos} alt="Embalagens Cosméticos" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-6">
                   <h3 className="text-xl font-heading font-bold text-white">Cosméticos</h3>
@@ -311,7 +309,7 @@ export default function HomePage() {
               </div>
             </motion.div>
 
-            {/* Jóias / Acessórios */}
+            {/* Food Service */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -319,74 +317,8 @@ export default function HomePage() {
               transition={{ delay: 0.25 }}
               className="bg-card rounded-2xl shadow-medium overflow-hidden border border-border hover:shadow-strong transition-shadow duration-300 group flex flex-col"
             >
-              <div className="relative h-40 overflow-hidden bg-secondary/10 flex items-center justify-center">
-                <Gem className="w-16 h-16 text-secondary/40" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                <div className="absolute bottom-4 left-6">
-                  <h3 className="text-xl font-heading font-bold text-white">Jóias / Acessórios</h3>
-                </div>
-              </div>
-              <div className="p-5 flex flex-col flex-grow">
-                <div className="space-y-2 mb-5 flex-grow">
-                  {["Sacolas", "Caixas", "Envelopes"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0" />
-                      <span className="text-foreground text-sm">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <Button variant="sustainability" size="default" asChild className="w-full mt-auto">
-                  <Link to="/solucoes">
-                    Ver Produtos
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </Button>
-              </div>
-            </motion.div>
-
-            {/* Alimentos */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="bg-card rounded-2xl shadow-medium overflow-hidden border border-border hover:shadow-strong transition-shadow duration-300 group flex flex-col"
-            >
-              <div className="relative h-40 overflow-hidden bg-primary/10 flex items-center justify-center">
-                <Cookie className="w-16 h-16 text-primary/40" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                <div className="absolute bottom-4 left-6">
-                  <h3 className="text-xl font-heading font-bold text-white">Alimentos</h3>
-                </div>
-              </div>
-              <div className="p-5 flex flex-col flex-grow">
-                <div className="space-y-2 mb-5 flex-grow">
-                  {["Sacolas", "Caixas", "Sacos", "Papel Barreira", "Etiquetas"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-foreground text-sm">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <Button variant="cta" size="default" asChild className="w-full mt-auto">
-                  <Link to="/solucoes">
-                    Ver Produtos
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </Button>
-              </div>
-            </motion.div>
-
-            {/* Food Service */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.35 }}
-              className="bg-card rounded-2xl shadow-medium overflow-hidden border border-border hover:shadow-strong transition-shadow duration-300 group flex flex-col"
-            >
               <div className="relative h-40 overflow-hidden">
-                <img src={sectorFood} alt="Embalagens Food Service" className="w-full h-full object-cover" />
+                <img src={sectorFoodService} alt="Embalagens Food Service" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-6">
                   <h3 className="text-xl font-heading font-bold text-white">Food Service</h3>
@@ -410,90 +342,24 @@ export default function HomePage() {
               </div>
             </motion.div>
 
-            {/* Farmácias */}
+            {/* Jóias / Acessórios */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.3 }}
               className="bg-card rounded-2xl shadow-medium overflow-hidden border border-border hover:shadow-strong transition-shadow duration-300 group flex flex-col"
             >
               <div className="relative h-40 overflow-hidden">
-                <img src={sectorFarmacias} alt="Embalagens Farmácias" className="w-full h-full object-cover" />
+                <img src={sectorJoias} alt="Embalagens Jóias e Acessórios" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-6">
-                  <h3 className="text-xl font-heading font-bold text-white">Farmácias</h3>
+                  <h3 className="text-xl font-heading font-bold text-white">Jóias / Acessórios</h3>
                 </div>
               </div>
               <div className="p-5 flex flex-col flex-grow">
                 <div className="space-y-2 mb-5 flex-grow">
-                  {["Sacolas", "Caixas", "Sacos"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
-                      <span className="text-foreground text-sm">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <Button variant="cta" size="default" asChild className="w-full mt-auto">
-                  <Link to="/solucoes">
-                    Ver Produtos
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </Button>
-              </div>
-            </motion.div>
-
-            {/* Supermercados/Conveniência */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.45 }}
-              className="bg-card rounded-2xl shadow-medium overflow-hidden border border-border hover:shadow-strong transition-shadow duration-300 group flex flex-col"
-            >
-              <div className="relative h-40 overflow-hidden">
-                <img src={sectorSupermercados} alt="Embalagens Supermercados e Conveniência" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                <div className="absolute bottom-4 left-6">
-                  <h3 className="text-xl font-heading font-bold text-white">Supermercados/Conveniência</h3>
-                </div>
-              </div>
-              <div className="p-5 flex flex-col flex-grow">
-                <div className="space-y-2 mb-5 flex-grow">
-                  {["Sacolas", "Sacos", "Caixas"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0" />
-                      <span className="text-foreground text-sm">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <Button variant="sustainability" size="default" asChild className="w-full mt-auto">
-                  <Link to="/solucoes">
-                    Ver Produtos
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </Button>
-              </div>
-            </motion.div>
-
-            {/* Atacado/Distribuidores */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-              className="bg-card rounded-2xl shadow-medium overflow-hidden border border-border hover:shadow-strong transition-shadow duration-300 group flex flex-col"
-            >
-              <div className="relative h-40 overflow-hidden bg-primary/10 flex items-center justify-center">
-                <Package className="w-16 h-16 text-primary/40" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                <div className="absolute bottom-4 left-6">
-                  <h3 className="text-xl font-heading font-bold text-white">Atacado/Distribuidores</h3>
-                </div>
-              </div>
-              <div className="p-5 flex flex-col flex-grow">
-                <div className="space-y-2 mb-5 flex-grow">
-                  {["Sacolas", "Sacos", "Caixas", "Itens adicionais"].map((item) => (
+                  {["Sacolas", "Caixas", "Envelopes"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0" />
                       <span className="text-foreground text-sm">{item}</span>
