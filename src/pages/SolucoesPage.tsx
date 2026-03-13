@@ -20,35 +20,59 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import Autoplay from "embla-carousel-autoplay";
 import solucoesHero from "@/assets/solucoes-hero.jpg";
+import finishLaminacaoBrilhante from "@/assets/finish-laminacao-brilhante.jpg";
+import finishLaminacaoSoftTouch from "@/assets/finish-laminacao-soft-touch.jpg";
+import finishCorteEspecial from "@/assets/finish-corte-especial.jpg";
+import finishRelevoSeco from "@/assets/finish-relevo-seco.jpg";
+import finishGofragem from "@/assets/finish-gofragem.jpg";
+import finishRelevoCombinado from "@/assets/finish-relevo-combinado.jpg";
+import finishImpressaoOffset from "@/assets/finish-impressao-offset.jpg";
+import finishHotStamping from "@/assets/finish-hot-stamping.jpg";
 
 const finishes = [
   {
+    title: "Laminação Brilhante",
+    description: "Acabamento com brilho intenso que realça cores e contrastes.",
+    image: finishLaminacaoBrilhante
+  },
+  {
+    title: "Laminação Soft Touch",
+    description: "Laminação premium com toque macio e sensorial.",
+    image: finishLaminacaoSoftTouch
+  },
+  {
+    title: "Corte Especial",
+    description: "Formato personalizado além do padrão tradicional.",
+    image: finishCorteEspecial
+  },
+  {
+    title: "Relevo Seco",
+    description: "Acabamento em alto ou baixo relevo sem uso de tinta.",
+    image: finishRelevoSeco
+  },
+  {
+    title: "Gofragem",
+    description: "Textura em relevo que confere sofisticação e personalidade à embalagem.",
+    image: finishGofragem
+  },
+  {
+    title: "Relevo Combinado",
+    description: "Combinação de relevo com impressão ou hot stamping.",
+    image: finishRelevoCombinado
+  },
+  {
+    title: "Impressão Offset",
+    description: "Impressão de alta definição com fidelidade de cores e riqueza de detalhes.",
+    image: finishImpressaoOffset
+  },
+  {
     title: "Hot Stamping",
-    description: "Acabamento metalizado aplicado a quente, disponível em ouro, prata e cores especiais."
+    description: "Acabamento metalizado aplicado a quente, disponível em ouro, prata e cores especiais.",
+    image: finishHotStamping
   },
   {
     title: "Laminação Fosca",
     description: "Camada protetora com toque aveludado e acabamento elegante."
-  },
-  {
-    title: "Laminação Brilhante",
-    description: "Acabamento com brilho intenso que realça cores e contrastes."
-  },
-  {
-    title: "Laminação Soft Touch",
-    description: "Laminação premium com toque macio e sensorial."
-  },
-  {
-    title: "Impressão Offset",
-    description: "Impressão de alta definição com fidelidade de cores e riqueza de detalhes."
-  },
-  {
-    title: "Relevo Seco",
-    description: "Acabamento em alto ou baixo relevo sem uso de tinta."
-  },
-  {
-    title: "Relevo Combinado",
-    description: "Combinação de relevo com impressão ou hot stamping."
   },
   {
     title: "Verniz Localizado",
@@ -57,10 +81,6 @@ const finishes = [
   {
     title: "Verniz Total",
     description: "Camada de verniz aplicada em toda a superfície."
-  },
-  {
-    title: "Corte Especial",
-    description: "Formato personalizado além do padrão tradicional."
   },
   {
     title: "Alças Especiais",
@@ -193,9 +213,15 @@ export default function SolucoesPage() {
                     >
                       <Card className="border-border hover:border-primary/50 transition-colors group h-full">
                         <CardContent className="p-0">
-                          {/* Image placeholder */}
-                          <div className="aspect-[4/3] bg-muted-foreground/10 rounded-t-lg flex items-center justify-center">
-                            <Sparkles className="w-12 h-12 text-muted-foreground/30" />
+                          {/* Image */}
+                          <div className="aspect-[4/3] rounded-t-lg overflow-hidden">
+                            {finish.image ? (
+                              <img src={finish.image} alt={finish.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            ) : (
+                              <div className="w-full h-full bg-muted-foreground/10 flex items-center justify-center">
+                                <Sparkles className="w-12 h-12 text-muted-foreground/30" />
+                              </div>
+                            )}
                           </div>
                           <div className="p-6">
                             <h3 className="text-lg font-heading font-semibold text-foreground mb-2">
