@@ -75,7 +75,8 @@ const finishes = [
   },
   {
     title: "Laminação Fosca",
-    description: "Camada protetora com toque aveludado e acabamento elegante."
+    description: "Camada protetora com toque aveludado e acabamento elegante.",
+    image: finishLaminacaoFosca
   },
   {
     title: "Verniz Localizado",
@@ -83,11 +84,13 @@ const finishes = [
   },
   {
     title: "Verniz Total",
-    description: "Camada de verniz aplicada em toda a superfície."
+    description: "Camada de verniz aplicada em toda a superfície.",
+    image: finishVernizTotal
   },
   {
     title: "Alças Especiais",
-    description: "Variedade de opções como algodão, gorgurão, papel torcido, cetim e alças personalizadas."
+    description: "Variedade de opções como algodão, gorgurão, papel torcido, cetim e alças personalizadas.",
+    image: finishAlcasEspeciais
   }
 ];
 
