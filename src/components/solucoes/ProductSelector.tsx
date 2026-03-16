@@ -500,14 +500,19 @@ export function ProductSelector() {
     setStep("papel-wrap-printing");
   }, []);
 
-  // Handle segment selection
-  const handleSegmentSelect = useCallback((segmentId: string) => {
-    setSelection(prev => ({ ...prev, segment: segmentId }));
-    setStep("product");
-  }, []);
-
-  // Handle product selection
+  // Handle direct product/category selection
   const handleProductSelect = useCallback((productId: string) => {
+    if (productId === "itens-adicionais") {
+      setSelection(prev => ({ ...prev, segment: "itens-adicionais" }));
+      setStep("sub-product");
+      return;
+    }
+    if (productId === "itens-adicionais-food") {
+      setSelection(prev => ({ ...prev, segment: "itens-adicionais-food" }));
+      setStep("sub-product");
+      return;
+    }
+    
     setSelection(prev => ({ ...prev, product: productId }));
     
     switch (productId) {
@@ -520,6 +525,19 @@ export function ProductSelector() {
       case "envelopes":
         setStep("envelope-type");
         break;
+      case "sacos":
+        setStep("saco-type");
+        break;
+      default:
+        setStep("confirmation");
+    }
+  }, []);
+
+  // Handle sub-product selection (from Itens Adicionais or Food)
+  const handleSubProductSelect = useCallback((productId: string) => {
+    setSelection(prev => ({ ...prev, product: productId }));
+    
+    switch (productId) {
       case "papel-seda":
         setStep("papel-seda-type");
         break;
@@ -529,14 +547,11 @@ export function ProductSelector() {
       case "tags":
         setStep("tag-type");
         break;
-      case "sacos":
-        setStep("saco-type");
+      case "guardanapos":
+        setStep("guardanapo-type");
         break;
       case "papel-barreira":
         setStep("papel-barreira-protection");
-        break;
-      case "guardanapos":
-        setStep("guardanapo-type");
         break;
       case "papel-wrap":
         setStep("papel-wrap-type");
