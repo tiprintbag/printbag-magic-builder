@@ -2962,10 +2962,23 @@ export function ProductSelector() {
       // ========================
       case "confirmation":
         return (
-          <FlowSummary 
-            items={buildSummaryItems()} 
-            onSubmit={handleSubmit}
-          />
+          <motion.div
+            key="confirmation"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 20 }}
+            className="space-y-6"
+          >
+            <div className="p-6 rounded-xl border border-primary/30 bg-primary/5 text-center">
+              <CheckCircle2 className="w-12 h-12 text-primary mx-auto mb-4" />
+              <h3 className="text-xl font-heading font-semibold text-foreground mb-2">
+                Seleção completa!
+              </h3>
+              <p className="text-muted-foreground">
+                Confira o resumo ao lado e clique em "Solicitar Orçamento" para enviar.
+              </p>
+            </div>
+          </motion.div>
         );
 
       default:
