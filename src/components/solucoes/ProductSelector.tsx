@@ -1426,18 +1426,17 @@ export function ProductSelector() {
       }
 
       if (selection.sacoMaterial) {
-        const materialOptions = isFoodService ? sacoMaterialOptionsFoodService : sacoMaterialOptions;
-        const materialLabel = materialOptions.find(m => m.id === selection.sacoMaterial)?.label || "";
+        const materialLabel = sacoMaterialOptions.find(m => m.id === selection.sacoMaterial)?.label || "";
         if (currentStep !== "saco-material") {
           items.push({
             label: materialLabel,
             onClick: currentStep !== "saco-barrier" && currentStep !== "saco-printing" ? handleBackToSacoMaterial : undefined,
-            isCurrent: (currentStep === "saco-barrier" || currentStep === "saco-printing") && !isFoodService
+            isCurrent: currentStep === "saco-barrier" || currentStep === "saco-printing"
           });
         }
       }
 
-      if (!isFoodService && selection.sacoBarrier) {
+      if (selection.sacoBarrier) {
         const barrierLabel = sacoBarrierOptions.find(b => b.id === selection.sacoBarrier)?.label || "";
         if (currentStep !== "saco-barrier" && currentStep !== "saco-material") {
           items.push({
@@ -1454,7 +1453,7 @@ export function ProductSelector() {
           items.push({
             label: `Impressão: ${printingLabel}`,
             onClick: currentStep !== "saco-application" ? handleBackToSacoPrinting : undefined,
-            isCurrent: currentStep === "saco-application" || (isFoodService && currentStep === "confirmation")
+            isCurrent: currentStep === "saco-application"
           });
         }
       }
