@@ -1662,15 +1662,19 @@ export function ProductSelector() {
               Qual tipo de sacola você procura?
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {bagTypeOptions.map((option, index) => (
-                <SelectionCard
-                  key={option.id}
-                  label={option.label}
-                  description={option.description}
-                  onClick={() => handleBagTypeSelect(option.id)}
-                  index={index}
-                />
-              ))}
+              {bagTypeOptions.map((option, index) => {
+                const bagImage = option.id === "sem-enobrecimento" ? productSacolaSimples : productSacolaEnobrecida;
+                return (
+                  <SelectionCard
+                    key={option.id}
+                    label={option.label}
+                    description={option.description}
+                    image={bagImage}
+                    onClick={() => handleBagTypeSelect(option.id)}
+                    index={index}
+                  />
+                );
+              })}
             </div>
           </motion.div>
         );
