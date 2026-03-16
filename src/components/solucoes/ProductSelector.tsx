@@ -84,6 +84,11 @@ import {
   papelWrapApplicationOptions
 } from "./ProductFlowData";
 
+import productSacolaSimples from "@/assets/product-sacola-simples.jpg";
+import productSacolaEnobrecida from "@/assets/product-sacola-enobrecida.jpg";
+import productSacolaKraft from "@/assets/product-sacola-kraft.jpg";
+import productSacolaBranco from "@/assets/product-sacola-branco.jpg";
+
 // Direct product categories
 const directProducts = [
   { id: "sacolas", label: "Sacolas", icon: ShoppingBag },
