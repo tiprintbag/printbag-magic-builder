@@ -66,7 +66,7 @@ import {
   // Saco options
   sacoTypeOptions,
   sacoMaterialOptions,
-  sacoMaterialOptionsFoodService,
+  
   sacoBarrierOptions,
   sacoPrintingOptions,
   sacoApplicationOptions,
