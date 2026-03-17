@@ -438,8 +438,8 @@ export default function HomePage() {
               transition={{ delay: 0.2 }}
               className="bg-card rounded-2xl p-6 shadow-medium border border-border hover:shadow-strong transition-shadow duration-300"
             >
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-                <Zap className="w-7 h-7 text-primary" />
+              <div className="w-20 h-20 flex items-center justify-center mb-5">
+                <img src={seloEnergia} alt="Selo Energia Renovável" className="w-full h-full object-contain" />
               </div>
               <h3 className="text-lg font-heading font-bold text-foreground mb-3">
                 Selo Energia Renovável
