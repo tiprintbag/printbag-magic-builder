@@ -97,6 +97,24 @@ import handleSaoFrancisco from "@/assets/handle-sao-francisco.jpg";
 import handleGorgurao from "@/assets/handle-gorgurao.jpg";
 import handleDalva from "@/assets/handle-dalva.jpg";
 import handleSintetica from "@/assets/handle-sintetica.jpg";
+import productEnvelopes from "@/assets/product-envelopes.jpg";
+import productCaixas from "@/assets/product-caixas.jpg";
+import productSacos from "@/assets/product-sacos.jpg";
+import finishBagHotStamping from "@/assets/finish-bag-hot-stamping.jpg";
+import finishBagRelevo from "@/assets/finish-bag-relevo.jpg";
+import finishBagLaminacao from "@/assets/finish-bag-laminacao.jpg";
+import finishBagVernizLocalizado from "@/assets/finish-bag-verniz-localizado.jpg";
+import finishBagGofragem from "@/assets/finish-bag-gofragem.jpg";
+import finishBagImpressaoMetalizada from "@/assets/finish-bag-impressao-metalizada.jpg";
+
+const bagFinishingImages: Record<string, string> = {
+  "hot-stamping": finishBagHotStamping,
+  "relevo": finishBagRelevo,
+  "laminacao": finishBagLaminacao,
+  "verniz-localizado": finishBagVernizLocalizado,
+  "gofragem": finishBagGofragem,
+  "impressao-metalizada": finishBagImpressaoMetalizada,
+};
 
 const handleImages: Record<string, string> = {
   "torcida": handleTorcida,
@@ -114,10 +132,10 @@ const handleImageClasses: Record<string, string> = {
 // Direct product categories
 const directProducts = [
   { id: "sacolas", label: "Sacolas", icon: ShoppingBag, image: productSacolas },
-  { id: "envelopes", label: "Envelopes", icon: FileText },
-  { id: "caixas", label: "Caixas", icon: Box },
+  { id: "envelopes", label: "Envelopes", icon: FileText, image: productEnvelopes },
+  { id: "caixas", label: "Caixas", icon: Box, image: productCaixas },
   { id: "itens-adicionais", label: "Itens Adicionais", icon: Tag },
-  { id: "sacos", label: "Sacos", icon: Package },
+  { id: "sacos", label: "Sacos", icon: Package, image: productSacos },
   { id: "itens-adicionais-food", label: "Itens Adicionais para Food", icon: Utensils }
 ];
 
@@ -1779,6 +1797,7 @@ export function ProductSelector() {
                   key={option.id}
                   label={option.label}
                   description={option.description}
+                  image={bagFinishingImages[option.id]}
                   isSelected={selection.bagFinishing.includes(option.id)}
                   isMultiSelect
                   onClick={() => handleBagFinishingToggle(option.id)}
