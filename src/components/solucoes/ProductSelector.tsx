@@ -109,6 +109,10 @@ import finishBagImpressaoMetalizada from "@/assets/finish-bag-impressao-metaliza
 import paperKraft from "@/assets/paper-kraft.jpg";
 import paperBranco from "@/assets/paper-branco.jpg";
 import paperCartao from "@/assets/paper-cartao.jpg";
+import productEnvelopePadrao from "@/assets/product-envelope-padrao.jpg";
+import productEnvelopeEnobrecido from "@/assets/product-envelope-enobrecido.jpg";
+import productCaixaPadrao from "@/assets/product-caixa-padrao.jpg";
+import productCaixaEnobrecida from "@/assets/product-caixa-enobrecida.jpg";
 
 const bagFinishingImages: Record<string, string> = {
   "hot-stamping": finishBagHotStamping,
@@ -1900,6 +1904,7 @@ export function ProductSelector() {
               {boxTypeOptions.map((option, index) => (
                 <SelectionCard
                   key={option.id}
+                  image={option.id === "simples" ? productCaixaPadrao : productCaixaEnobrecida}
                   label={option.label}
                   description={option.description}
                   onClick={() => handleBoxTypeSelect(option.id)}
@@ -2126,6 +2131,7 @@ export function ProductSelector() {
               {envelopeTypeOptions.map((option, index) => (
                 <SelectionCard
                   key={option.id}
+                  image={option.id === "simples" ? productEnvelopePadrao : productEnvelopeEnobrecido}
                   label={option.label}
                   description={option.description}
                   onClick={() => handleEnvelopeTypeSelect(option.id)}
