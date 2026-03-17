@@ -1904,6 +1904,7 @@ export function ProductSelector() {
               {boxTypeOptions.map((option, index) => (
                 <SelectionCard
                   key={option.id}
+                  image={option.id === "simples" ? productCaixaPadrao : productCaixaEnobrecida}
                   label={option.label}
                   description={option.description}
                   onClick={() => handleBoxTypeSelect(option.id)}
