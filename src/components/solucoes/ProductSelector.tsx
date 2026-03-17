@@ -1829,15 +1829,23 @@ export function ProductSelector() {
               Qual o tipo de papel?
             </h3>
             <div className="grid grid-cols-3 gap-4">
-              {bagPaperOptionsPremium.map((option, index) => (
-                <SelectionCard
-                  key={option.id}
-                  label={option.label}
-                  description={option.description}
-                  onClick={() => handleBagPaperPremiumSelect(option.id)}
-                  index={index}
-                />
-              ))}
+              {bagPaperOptionsPremium.map((option, index) => {
+                const paperImages: Record<string, string> = {
+                  kraft: paperKraft,
+                  branco: paperBranco,
+                  cartao: paperCartao,
+                };
+                return (
+                  <SelectionCard
+                    key={option.id}
+                    image={paperImages[option.id]}
+                    label={option.label}
+                    description={option.description}
+                    onClick={() => handleBagPaperPremiumSelect(option.id)}
+                    index={index}
+                  />
+                );
+              })}
             </div>
           </motion.div>
         );
