@@ -18,6 +18,15 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Button } from "@/components/ui/button";
+import { Layout } from "@/components/layout/Layout";
 import heroFactory from "@/assets/hero-factory.jpg";
 import seloFsc from "@/assets/selo-fsc.png";
 import seloEnergia from "@/assets/selo-energia-renovavel.png";
