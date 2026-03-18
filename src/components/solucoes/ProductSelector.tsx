@@ -2683,6 +2683,7 @@ export function ProductSelector() {
                 <SelectionCard
                   key={option.id}
                   label={option.label}
+                  image={option.id === "fundo-quadrado" ? productSacoFundoQuadrado : productSacoFundoV}
                   onClick={() => handleSacoTypeSelect(option.id)}
                   index={index}
                 />
