@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Phone, Mail, MapPin, Linkedin, Instagram, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, Linkedin, Instagram } from "lucide-react";
 import logoPrintbag from "@/assets/logo-printbag-original.svg";
 
 const footerLinks = {
