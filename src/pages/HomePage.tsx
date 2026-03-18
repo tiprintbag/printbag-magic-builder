@@ -456,7 +456,7 @@ export default function HomePage() {
                 <img src={seloTwoSides} loading="lazy" alt="Selo Two Sides" className="max-h-full max-w-full object-contain" />
               </div>
               <h3 className="text-lg font-heading font-bold text-foreground mb-3">Selo Two Sides</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed text-justify">
+              <p className="text-muted-foreground text-sm leading-relaxed text-left">
                 Iniciativa global que certifica empresas comprometidas com a sustentabilidade do papel como material renovável, reciclável e biodegradável.
               </p>
             </motion.div>
