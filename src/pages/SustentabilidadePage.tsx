@@ -171,7 +171,7 @@ export default function SustentabilidadePage() {
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
                 Enquanto outras fabricantes utilizam plástico e materiais sintéticos, 
-                a Printbag escolheu trabalhar exclusivamente com papel — um material 
+                a Printbag escolheu trabalhar exclusivamente com papel, um material 
                 natural, renovável e totalmente reciclável. Todos os nossos papéis são 
                 certificados pelo <strong className="text-foreground">Selo FSC</strong>, 
                 que garante a procedência legal e o manejo responsável das florestas.
