@@ -45,32 +45,22 @@ const assuntoOptions = [
 
 export default function ContatoPage() {
   const [searchParams] = useSearchParams();
-  const [formData, setFormData] = useState({
-    nome: "",
-    empresa: "",
-    assunto: "",
-    email: "",
-    telefone: "",
-    tipoEmbalagem: "",
-    volume: "",
-    mensagem: ""
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
+  const [formData, setFormData] = useState(() => {
     const assuntoParam = searchParams.get("assunto");
     const mensagemParam = searchParams.get("mensagem");
     
-    if (assuntoParam && assuntoOptions.includes(assuntoParam)) {
-      setFormData(prev => ({ 
-        ...prev, 
-        assunto: assuntoParam,
-        mensagem: mensagemParam ? decodeURIComponent(mensagemParam) : prev.mensagem
-      }));
-    } else if (mensagemParam) {
-      setFormData(prev => ({ ...prev, mensagem: decodeURIComponent(mensagemParam) }));
-    }
-  }, [searchParams]);
+    return {
+      nome: "",
+      empresa: "",
+      assunto: assuntoParam && assuntoOptions.includes(assuntoParam) ? assuntoParam : "",
+      email: "",
+      telefone: "",
+      tipoEmbalagem: "",
+      volume: "",
+      mensagem: mensagemParam ? decodeURIComponent(mensagemParam) : ""
+    };
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
