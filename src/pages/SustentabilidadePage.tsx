@@ -13,17 +13,17 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
-import sustainabilityHero from "@/assets/sustainability-hero.jpg";
+import sustainabilityHero from "@/assets/sustainability-hero-bags.jpg";
 import seloFsc from "@/assets/selo-fsc.png";
 import seloEnergiaRenovavel from "@/assets/selo-energia-renovavel.png";
 import seloAbvtex from "@/assets/selo-abvtex.jpg";
 import seloTwoSides from "@/assets/selo-two-sides.png";
 
 const impactNumbers = [
-  { value: "63,55t", label: "De papel reciclado por mês" },
-  { value: "104,56t", label: "De CO₂ deixamos de emitir por mês" },
-  { value: "4.753", label: "Equivalente a novas árvores plantadas/mês" },
-  { value: "22,5", label: "Carros retirados de circulação por ano" }
+  { value: "63t", label: "De papel reciclado por mês" },
+  { value: "104t", label: "De CO₂ deixamos de emitir por mês" },
+  { value: "4753", label: "Equivalente a novas árvores plantadas/mês" },
+  { value: "22", label: "Carros retirados de circulação por ano" }
 ];
 
 const certifications = [
