@@ -18,6 +18,7 @@ import timeline2011 from "@/assets/timeline-2011.jpg";
 import timeline2015 from "@/assets/timeline-2015.jpg";
 import timeline2024 from "@/assets/timeline-2024.jpg";
 import timeline2025 from "@/assets/timeline-2025.jpg";
+import timeline2026 from "@/assets/timeline-2026.jpg";
 
 
 const timeline = [
@@ -56,6 +57,12 @@ const timeline = [
     title: "Investimento em Tecnologia",
     description: "Investimento em novos equipamentos de última geração.",
     image: timeline2025
+  },
+  {
+    year: "2026",
+    title: "Nova Fábrica",
+    description: "Adaptação do primeiro Centro de Distribuição para uma nova Fábrica.",
+    image: timeline2026
   }
 ];
 
@@ -167,7 +174,7 @@ export default function SobrePage() {
             {/* Timeline Line */}
             <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-border hidden lg:block" />
 
-            <div className="space-y-16">
+            <div className="space-y-12">
               {timeline.map((item, index) => (
                 <motion.div
                   key={item.year}
@@ -180,24 +187,24 @@ export default function SobrePage() {
                   }`}
                 >
                   <div className={`lg:w-1/2 ${index % 2 === 0 ? "lg:text-right lg:pr-8" : "lg:text-left lg:pl-8"}`}>
-                    <div className="bg-card rounded-xl p-6 border border-border shadow-medium">
-                      <div className={`flex items-center gap-3 mb-4 ${index % 2 === 0 ? "lg:justify-end" : ""}`}>
-                        <Calendar className="w-5 h-5 text-primary" />
-                        <span className="text-2xl font-heading font-bold text-primary">
+                    <div className="bg-card rounded-xl p-5 border border-border shadow-medium max-w-md mx-auto">
+                      <div className={`flex items-center gap-2 mb-3 ${index % 2 === 0 ? "lg:justify-end" : ""}`}>
+                        <Calendar className="w-4 h-4 text-primary" />
+                        <span className="text-xl font-heading font-bold text-primary">
                           {item.year}
                         </span>
                       </div>
-                      <h3 className="text-lg font-heading font-semibold text-foreground mb-2">
+                      <h3 className="text-base font-heading font-semibold text-foreground mb-2">
                         {item.title}
                       </h3>
-                      <p className="text-muted-foreground mb-4">
+                      <p className="text-sm text-muted-foreground mb-3">
                         {item.description}
                       </p>
                       <div className="rounded-lg overflow-hidden">
                         <img 
                           src={item.image} 
                           alt={`${item.title} - ${item.year}`}
-                          className="w-full h-40 object-cover hover:scale-105 transition-transform duration-300"
+                          className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
                         />
                       </div>
                     </div>
