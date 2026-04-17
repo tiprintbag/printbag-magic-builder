@@ -174,7 +174,7 @@ export default function SobrePage() {
             {/* Timeline Line */}
             <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-border hidden lg:block" />
 
-            <div className="space-y-12">
+            <div className="space-y-4">
               {timeline.map((item, index) => (
                 <motion.div
                   key={item.year}
