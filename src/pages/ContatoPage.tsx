@@ -43,7 +43,21 @@ const assuntoOptions = [
   "Outros"
 ];
 
+const locations = {
+  fabrica: {
+    address: "Av. José Francisco Bernardes, 1751 - Areias, Camboriú - SC, 88345-200",
+    mapSrc: "https://www.google.com/maps?q=Av.+Jos%C3%A9+Francisco+Bernardes%2C+1751+-+Areias%2C+Cambori%C3%BA+-+SC%2C+88345-200&output=embed",
+  },
+  cd: {
+    address: "BR-101, 9485 - Área D8 - Cidade Nova, Itajaí - SC, 88308-620",
+    mapSrc: "https://www.google.com/maps?q=BR-101%2C+9485+-+%C3%81rea+D8+-+Cidade+Nova%2C+Itaja%C3%AD+-+SC%2C+88308-620&output=embed",
+  },
+} as const;
+
+type LocationKey = keyof typeof locations;
+
 export default function ContatoPage() {
+  const [selectedLocation, setSelectedLocation] = useState<LocationKey>("fabrica");
   const [searchParams] = useSearchParams();
   const [formData, setFormData] = useState(() => {
     const assuntoParam = searchParams.get("assunto");
