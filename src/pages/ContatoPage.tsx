@@ -318,9 +318,34 @@ export default function ContatoPage() {
                 <h3 className="text-xl font-heading font-semibold text-foreground mb-4">
                   Nossa Localização
                 </h3>
+
+                <div className="flex flex-col sm:flex-row gap-2 mb-4">
+                  <Button
+                    type="button"
+                    variant={selectedLocation === "fabrica" ? "default" : "outline"}
+                    onClick={() => setSelectedLocation("fabrica")}
+                    className="flex-1"
+                  >
+                    Fábrica
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={selectedLocation === "cd" ? "default" : "outline"}
+                    onClick={() => setSelectedLocation("cd")}
+                    className="flex-1"
+                  >
+                    Centro de Distribuição
+                  </Button>
+                </div>
+
+                <p className="text-sm text-muted-foreground mb-4">
+                  {locations[selectedLocation].address}
+                </p>
+
                 <div className="aspect-video rounded-lg overflow-hidden bg-card border border-border">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3556.5!2d-48.6544!3d-27.0253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94d8b10b0b0b0b0b%3A0x0!2sAv.+Jos%C3%A9+Francisco+Bernardes%2C+1751+-+Areias%2C+Cambori%C3%BA+-+SC%2C+88345-200!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
+                    key={selectedLocation}
+                    src={locations[selectedLocation].mapSrc}
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
