@@ -7,7 +7,14 @@ import logoPrintbag from "@/assets/logo-printbag-original.svg";
 
 const navItems = [
   { name: "Home", path: "/" },
-  { name: "Sobre Nós", path: "/sobre" },
+  {
+    name: "Sobre Nós",
+    path: "/sobre",
+    submenu: [
+      { name: "Nossa História", path: "/sobre" },
+      { name: "Blog", path: "/blog" },
+    ]
+  },
   { 
     name: "Soluções", 
     path: "/solucoes",
@@ -113,7 +120,7 @@ export function Header() {
                   <Link
                     to={item.path}
                     className={`flex items-center gap-1 font-medium transition-colors duration-200 ${
-                      location.pathname === item.path
+                      location.pathname === item.path || ('submenu' in item && item.submenu?.some((subItem) => location.pathname === subItem.path))
                         ? "text-primary"
                         : "text-foreground hover:text-primary"
                     }`}
@@ -187,7 +194,7 @@ export function Header() {
                         <Link
                           to={item.path}
                           className={`text-lg font-medium transition-colors ${
-                            location.pathname === item.path
+                            location.pathname === item.path || ('submenu' in item && item.submenu?.some((subItem) => location.pathname === subItem.path))
                               ? "text-primary"
                               : "text-foreground hover:text-primary"
                           }`}
