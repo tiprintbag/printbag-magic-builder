@@ -32,6 +32,17 @@ type BlogPost = {
   blog_categories: { name: string } | null;
 };
 
+type BlogPostQueryBuilder = {
+  select: (columns: string) => BlogPostQueryBuilder;
+  eq: (column: string, value: string) => BlogPostQueryBuilder;
+  lte: (column: string, value: string) => BlogPostQueryBuilder;
+  maybeSingle: () => Promise<{ data: unknown | null; error: Error | null }>;
+};
+
+const blogClient = supabase as unknown as {
+  from: (table: "blog_posts") => BlogPostQueryBuilder;
+};
+
 const formatDate = (date: string | null) => {
   if (!date) return "";
 
@@ -44,7 +55,7 @@ const formatDate = (date: string | null) => {
 };
 
 const fetchBlogPost = async (slug: string) => {
-  const { data, error } = await (supabase as any)
+  const { data, error } = await blogClient
     .from("blog_posts")
     .select(`
       title,
