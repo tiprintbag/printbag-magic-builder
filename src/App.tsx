@@ -7,6 +7,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import HomePage from "./pages/HomePage";
 import SobrePage from "./pages/SobrePage";
 import BlogPage from "./pages/BlogPage";
+import BlogArticlePage from "./pages/BlogArticlePage";
 import SolucoesPage from "./pages/SolucoesPage";
 import SustentabilidadePage from "./pages/SustentabilidadePage";
 import ContatoPage from "./pages/ContatoPage";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/" element={<HomePage />} />
           <Route path="/sobre" element={<SobrePage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/como-escolher-a-embalagem-ideal" element={<BlogArticlePage />} />
           <Route path="/solucoes" element={<SolucoesPage />} />
           <Route path="/sustentabilidade" element={<SustentabilidadePage />} />
           <Route path="/contato" element={<ContatoPage />} />
