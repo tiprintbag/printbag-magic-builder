@@ -2,75 +2,126 @@ import { motion } from "framer-motion";
 import { Calendar, Clock, ArrowRight, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useMemo, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useQuery } from "@tanstack/react-query";
 import { Layout } from "@/components/layout/Layout";
+import { supabase } from "@/integrations/supabase/client";
 import productsCollection from "@/assets/products-collection.jpg";
 import productSacolas from "@/assets/product-sacolas.jpg";
 import finishHotStamping from "@/assets/finish-hot-stamping.jpg";
 
-const featuredPost = {
-  title: "Como escolher a embalagem ideal para valorizar sua marca",
-  excerpt:
-    "Critérios essenciais para alinhar material, acabamento, formato e experiência de compra em projetos de embalagem personalizados.",
-  date: "Janeiro 2026",
-  readTime: "6 min de leitura",
-  category: "Estratégia de Embalagem",
-  image: productsCollection,
-  path: "/blog/como-escolher-a-embalagem-ideal",
+const fallbackCategories = ["Estratégia de Embalagem", "Sacolas", "Acabamentos"];
+
+const fallbackImages: Record<string, string> = {
+  "como-escolher-a-embalagem-ideal": productsCollection,
+  "sacolas-personalizadas-o-que-considerar-antes-de-produzir": productSacolas,
+  "acabamentos-premium-que-aumentam-a-percepcao-de-valor": finishHotStamping,
 };
 
-const categories = [
-  "Todos",
-  "Estratégia de Embalagem",
-  "Sacolas",
-  "Acabamentos",
-];
+type BlogCategory = {
+  name: string;
+  slug: string;
+};
 
-const posts = [
-  featuredPost,
-  {
-    title: "Sacolas personalizadas: o que considerar antes de produzir",
-    excerpt:
-      "Um guia prático sobre gramatura, alças, impressão e volume para marcas que buscam qualidade e consistência no ponto de venda.",
-    date: "Dezembro 2025",
-    readTime: "5 min de leitura",
-    category: "Sacolas",
-    image: productSacolas,
-    path: "/blog",
-  },
-  {
-    title: "Acabamentos premium que aumentam a percepção de valor",
-    excerpt:
-      "Hot stamping, relevo, laminação e verniz localizado aplicados com propósito para criar embalagens mais memoráveis.",
-    date: "Novembro 2025",
-    readTime: "4 min de leitura",
-    category: "Acabamentos",
-    image: finishHotStamping,
-    path: "/blog",
-  },
-];
+type BlogPost = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  cover_image_url: string | null;
+  cover_image_alt: string | null;
+  read_time_minutes: number;
+  published_at: string | null;
+  is_featured: boolean;
+  keywords: string[] | null;
+  blog_categories: BlogCategory | null;
+};
+
+const formatDate = (date: string | null) => {
+  if (!date) return "";
+
+  return new Intl.DateTimeFormat("pt-BR", {
+    month: "long",
+    year: "numeric",
+  })
+    .format(new Date(date))
+    .replace(/^./, (letter) => letter.toUpperCase());
+};
+
+const fetchBlogPosts = async () => {
+  const { data, error } = await (supabase as any)
+    .from("blog_posts")
+    .select(`
+      id,
+      title,
+      slug,
+      excerpt,
+      cover_image_url,
+      cover_image_alt,
+      read_time_minutes,
+      published_at,
+      is_featured,
+      keywords,
+      blog_categories(name, slug)
+    `)
+    .eq("status", "published")
+    .lte("published_at", new Date().toISOString())
+    .order("is_featured", { ascending: false })
+    .order("published_at", { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []) as BlogPost[];
+};
+
+const fetchBlogCategories = async () => {
+  const { data, error } = await (supabase as any)
+    .from("blog_categories")
+    .select("name, slug")
+    .eq("is_active", true)
+    .order("sort_order", { ascending: true });
+
+  if (error) throw error;
+  return (data ?? []) as BlogCategory[];
+};
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [searchTerm, setSearchTerm] = useState("");
   const [activeSearch, setActiveSearch] = useState("");
-  const filteredPosts = useMemo(
-    () => {
-      const normalizedSearch = activeSearch.trim().toLowerCase();
 
-      return posts.filter((post) => {
-        const matchesCategory = selectedCategory === "Todos" || post.category === selectedCategory;
-        const matchesSearch =
-          !normalizedSearch ||
-          [post.title, post.excerpt, post.category, post.date].some((content) =>
-            content.toLowerCase().includes(normalizedSearch),
-          );
+  const { data: posts = [], isLoading } = useQuery({
+    queryKey: ["blog-posts"],
+    queryFn: fetchBlogPosts,
+  });
 
-        return matchesCategory && matchesSearch;
-      });
-    },
-    [activeSearch, selectedCategory],
+  const { data: databaseCategories = [] } = useQuery({
+    queryKey: ["blog-categories"],
+    queryFn: fetchBlogCategories,
+  });
+
+  const categories = useMemo(
+    () => ["Todos", ...(databaseCategories.length ? databaseCategories.map((category) => category.name) : fallbackCategories)],
+    [databaseCategories],
   );
+
+  const filteredPosts = useMemo(() => {
+    const normalizedSearch = activeSearch.trim().toLowerCase();
+
+    return posts.filter((post) => {
+      const categoryName = post.blog_categories?.name ?? "";
+      const matchesCategory = selectedCategory === "Todos" || categoryName === selectedCategory;
+      const matchesSearch =
+        !normalizedSearch ||
+        [
+          post.title,
+          post.excerpt,
+          categoryName,
+          formatDate(post.published_at),
+          ...(post.keywords ?? []),
+        ].some((content) => content.toLowerCase().includes(normalizedSearch));
+
+      return matchesCategory && matchesSearch;
+    });
+  }, [activeSearch, posts, selectedCategory]);
 
   const handleSearch = () => {
     setActiveSearch(searchTerm);
@@ -155,37 +206,51 @@ export default function BlogPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPosts.map((post, index) => (
-              <motion.article
-                key={post.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08 }}
-                className="bg-card border border-border rounded-xl overflow-hidden shadow-soft hover:shadow-medium transition-shadow"
-              >
-                <Link to={post.path} className="block h-full">
-                  <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
-                  <div className="p-6">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-primary">{post.category}</span>
-                    <h3 className="text-xl font-heading font-bold text-foreground mt-3 mb-3">
-                      {post.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-5">{post.excerpt}</p>
-                    <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground mb-5">
-                      <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" />{post.date}</span>
-                      <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" />{post.readTime}</span>
-                    </div>
-                    <span className="inline-flex items-center gap-2 text-sm font-medium text-primary">
-                      Ler publicação <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </div>
-                </Link>
-              </motion.article>
-            ))}
-          </div>
-          {filteredPosts.length === 0 && (
+          {isLoading ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3].map((item) => (
+                <div key={item} className="h-96 rounded-xl bg-muted animate-pulse" />
+              ))}
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredPosts.map((post, index) => {
+                const categoryName = post.blog_categories?.name ?? "Conteúdo";
+                const image = post.cover_image_url || fallbackImages[post.slug] || productsCollection;
+
+                return (
+                  <motion.article
+                    key={post.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.08 }}
+                    className="bg-card border border-border rounded-xl overflow-hidden shadow-soft hover:shadow-medium transition-shadow"
+                  >
+                    <Link to={`/blog/${post.slug}`} className="block h-full">
+                      <img src={image} alt={post.cover_image_alt || post.title} className="w-full h-48 object-cover" />
+                      <div className="p-6">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-primary">{categoryName}</span>
+                        <h3 className="text-xl font-heading font-bold text-foreground mt-3 mb-3">
+                          {post.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-5">{post.excerpt}</p>
+                        <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground mb-5">
+                          <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5" />{formatDate(post.published_at)}</span>
+                          <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" />{post.read_time_minutes} min de leitura</span>
+                        </div>
+                        <span className="inline-flex items-center gap-2 text-sm font-medium text-primary">
+                          Ler publicação <ArrowRight className="w-4 h-4" />
+                        </span>
+                      </div>
+                    </Link>
+                  </motion.article>
+                );
+              })}
+            </div>
+          )}
+
+          {!isLoading && filteredPosts.length === 0 && (
             <div className="text-center py-12 border border-border rounded-xl bg-card">
               <p className="text-foreground font-medium">Nenhum conteúdo encontrado.</p>
               <p className="text-sm text-muted-foreground mt-2">Tente pesquisar por outro tema, material ou acabamento.</p>
