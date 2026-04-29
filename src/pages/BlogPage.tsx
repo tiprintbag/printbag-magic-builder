@@ -52,13 +52,29 @@ const posts = [
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [activeSearch, setActiveSearch] = useState("");
   const filteredPosts = useMemo(
-    () =>
-      selectedCategory === "Todos"
-        ? posts
-        : posts.filter((post) => post.category === selectedCategory),
-    [selectedCategory],
+    () => {
+      const normalizedSearch = activeSearch.trim().toLowerCase();
+
+      return posts.filter((post) => {
+        const matchesCategory = selectedCategory === "Todos" || post.category === selectedCategory;
+        const matchesSearch =
+          !normalizedSearch ||
+          [post.title, post.excerpt, post.category, post.date].some((content) =>
+            content.toLowerCase().includes(normalizedSearch),
+          );
+
+        return matchesCategory && matchesSearch;
+      });
+    },
+    [activeSearch, selectedCategory],
   );
+
+  const handleSearch = () => {
+    setActiveSearch(searchTerm);
+  };
 
   return (
     <Layout>
@@ -85,10 +101,24 @@ export default function BlogPage() {
             <p className="text-lg md:text-xl text-primary-foreground/90 max-w-3xl mb-8">
               Tendências, boas práticas e referências para marcas que querem transformar embalagens personalizadas em experiência, presença e valor no ponto de venda.
             </p>
-            <div className="flex items-center gap-3 w-full max-w-md border border-primary-foreground/60 bg-background/10 backdrop-blur-sm rounded-lg px-4 py-3">
-              <Search className="w-5 h-5 text-primary-foreground/80" />
-              <span className="text-sm text-primary-foreground/70">Pesquise por temas, materiais ou acabamentos</span>
-            </div>
+            <form
+              className="flex items-center gap-3 w-full max-w-md border border-primary-foreground/60 bg-background/10 backdrop-blur-sm rounded-lg px-4 py-3"
+              onSubmit={(event) => {
+                event.preventDefault();
+                handleSearch();
+              }}
+            >
+              <input
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+                placeholder="Pesquise por temas, materiais ou acabamentos"
+                className="min-w-0 flex-1 bg-transparent text-sm text-primary-foreground placeholder:text-primary-foreground/70 outline-none"
+                aria-label="Pesquisar publicações do blog"
+              />
+              <button type="submit" aria-label="Pesquisar" className="shrink-0 text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <Search className="w-5 h-5" />
+              </button>
+            </form>
           </motion.div>
         </div>
       </section>
@@ -155,6 +185,12 @@ export default function BlogPage() {
               </motion.article>
             ))}
           </div>
+          {filteredPosts.length === 0 && (
+            <div className="text-center py-12 border border-border rounded-xl bg-card">
+              <p className="text-foreground font-medium">Nenhum conteúdo encontrado.</p>
+              <p className="text-sm text-muted-foreground mt-2">Tente pesquisar por outro tema, material ou acabamento.</p>
+            </div>
+          )}
         </div>
       </section>
     </Layout>
