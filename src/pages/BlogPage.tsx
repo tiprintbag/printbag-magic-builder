@@ -36,6 +36,19 @@ type BlogPost = {
   blog_categories: BlogCategory | null;
 };
 
+type BlogQueryBuilder = {
+  select: (columns: string) => BlogQueryBuilder;
+  eq: (column: string, value: string | boolean) => BlogQueryBuilder;
+  lte: (column: string, value: string) => BlogQueryBuilder;
+  order: (column: string, options?: { ascending: boolean }) => Promise<{ data: unknown[] | null; error: Error | null }> & BlogQueryBuilder;
+};
+
+type BlogSupabaseClient = {
+  from: (table: "blog_posts" | "blog_categories") => BlogQueryBuilder;
+};
+
+const blogClient = supabase as unknown as BlogSupabaseClient;
+
 const formatDate = (date: string | null) => {
   if (!date) return "";
 
@@ -48,7 +61,7 @@ const formatDate = (date: string | null) => {
 };
 
 const fetchBlogPosts = async () => {
-  const { data, error } = await (supabase as any)
+  const { data, error } = await blogClient
     .from("blog_posts")
     .select(`
       id,
@@ -73,7 +86,7 @@ const fetchBlogPosts = async () => {
 };
 
 const fetchBlogCategories = async () => {
-  const { data, error } = await (supabase as any)
+  const { data, error } = await blogClient
     .from("blog_categories")
     .select("name, slug")
     .eq("is_active", true)
