@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Calendar, Clock, ArrowRight, Search } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/layout/Layout";
 import productsCollection from "@/assets/products-collection.jpg";
@@ -23,12 +24,6 @@ const categories = [
   "Estratégia de Embalagem",
   "Sacolas",
   "Acabamentos",
-  "Varejo",
-  "Food Service",
-  "Sustentabilidade",
-  "Papel",
-  "Branding",
-  "Produção",
 ];
 
 const posts = [
@@ -56,6 +51,15 @@ const posts = [
 ];
 
 export default function BlogPage() {
+  const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const filteredPosts = useMemo(
+    () =>
+      selectedCategory === "Todos"
+        ? posts
+        : posts.filter((post) => post.category === selectedCategory),
+    [selectedCategory],
+  );
+
   return (
     <Layout>
       <section className="relative min-h-[560px] pt-32 pb-16 md:pt-40 md:pb-20 bg-foreground overflow-hidden">
@@ -92,11 +96,14 @@ export default function BlogPage() {
       <section className="py-12 md:py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-10">
-            {categories.map((category, index) => (
+            {categories.map((category) => (
               <button
                 key={category}
+                type="button"
+                onClick={() => setSelectedCategory(category)}
+                aria-pressed={selectedCategory === category}
                 className={`px-5 py-3 rounded-lg text-sm transition-colors ${
-                  index === 0
+                  selectedCategory === category
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground"
                 }`}
@@ -119,7 +126,7 @@ export default function BlogPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((post, index) => (
+            {filteredPosts.map((post, index) => (
               <motion.article
                 key={post.title}
                 initial={{ opacity: 0, y: 20 }}
