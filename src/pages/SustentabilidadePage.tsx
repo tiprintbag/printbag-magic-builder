@@ -21,10 +21,10 @@ import seloAbvtex from "@/assets/selo-abvtex.jpg";
 import seloTwoSides from "@/assets/selo-two-sides.png";
 
 const impactNumbers = [
-  { value: 190, suffix: "t", label: "De papel reciclado em 2026" },
-  { value: 312, suffix: "t", label: "De CO₂ não emitidas em 2026" },
-  { value: 14224, suffix: "", label: "Equivalente a novas árvores plantadas/ano" },
-  { value: 68, suffix: "", label: "Carros retirados de circulação por ano" }
+  { value: 254, suffix: "t", label: "De papel reciclado em 2026" },
+  { value: 412, suffix: "t", label: "De CO₂ não emitidas em 2026" },
+  { value: 18726, suffix: "", label: "Equivalente a novas árvores plantadas/ano" },
+  { value: 90, suffix: "", label: "Carros retirados de circulação por ano" }
 ];
 
 function CountUp({ value, suffix }: { value: number; suffix: string }) {
