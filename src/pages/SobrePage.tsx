@@ -91,7 +91,7 @@ export default function SobrePage() {
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-primary-foreground mt-4 mb-6"
             >
-              Mais de 40 Anos{" "}
+              Mais de 15 Anos{" "}
               <span className="text-gradient-primary">Transformando</span>{" "}
               Marcas
             </motion.h1>
