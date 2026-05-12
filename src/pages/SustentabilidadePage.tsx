@@ -285,7 +285,7 @@ export default function SustentabilidadePage() {
                       Redução de CO₂
                     </h3>
                     <p className="text-sm text-muted-foreground mb-3">
-                      Em média por mês deixamos de emitir 104,56 toneladas de CO₂.
+                      Em média por mês deixamos de emitir 138,1 toneladas de CO₂.
                     </p>
                     <div className="flex gap-6">
                       <div className="flex items-center gap-2">
