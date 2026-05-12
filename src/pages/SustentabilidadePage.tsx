@@ -19,6 +19,7 @@ import seloFsc from "@/assets/selo-fsc-new.png";
 import seloEnergiaRenovavel from "@/assets/selo-energia-renovavel.png";
 import seloAbvtex from "@/assets/selo-abvtex.jpg";
 import seloTwoSides from "@/assets/selo-two-sides.png";
+import seloEcovadis from "@/assets/selo-ecovadis.png";
 
 const impactNumbers = [
   { value: 254, suffix: "t", label: "De papel reciclado em 2026" },
