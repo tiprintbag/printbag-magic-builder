@@ -138,7 +138,9 @@ export default function ContatoPage() {
           assunto: "",
           email: "",
           telefone: "",
-          tipoEmbalagem: "",
+          segmento: "",
+          numeroLojas: "",
+          comoConheceu: "",
           volume: "",
           mensagem: "",
         });
