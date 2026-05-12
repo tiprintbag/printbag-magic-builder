@@ -117,7 +117,9 @@ export default function ContatoPage() {
           telefone: formData.telefone,
           mensagem: formData.mensagem,
           ...(isOrcamento && {
-            tipoEmbalagem: formData.tipoEmbalagem,
+            segmento: formData.segmento,
+            numeroLojas: formData.numeroLojas,
+            comoConheceu: formData.comoConheceu,
             volume: formData.volume,
           }),
         }),
