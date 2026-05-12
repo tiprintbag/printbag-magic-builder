@@ -26,11 +26,24 @@ const volumeOptions = [
   "Acima de 50.000 unidades"
 ];
 
-const productTypes = [
-  "Sacolas de Papel",
-  "Embalagens para Varejo",
-  "Embalagens para E-commerce",
-  "Caixas Presenteáveis",
+const segmentos = [
+  "Moda e Calçados",
+  "Cosméticos e Beleza",
+  "Jóias e Relógios",
+  "Alimentos e Bebidas",
+  "Tecnologias e Eletrônicos",
+  "Outros"
+];
+
+const numeroLojasOptions = ["1", "2", "3", "4", "5 ou mais"];
+
+const comoConheceuOptions = [
+  "Indicação",
+  "Vi a marca em uma embalagem",
+  "Já fui cliente",
+  "Linkedin",
+  "Google",
+  "Instagram/Facebook",
   "Outro"
 ];
 
@@ -69,7 +82,9 @@ export default function ContatoPage() {
       assunto: assuntoParam && assuntoOptions.includes(assuntoParam) ? assuntoParam : "",
       email: "",
       telefone: "",
-      tipoEmbalagem: "",
+      segmento: "",
+      numeroLojas: "",
+      comoConheceu: "",
       volume: "",
       mensagem: mensagemParam ? decodeURIComponent(mensagemParam) : ""
     };
@@ -102,7 +117,9 @@ export default function ContatoPage() {
           telefone: formData.telefone,
           mensagem: formData.mensagem,
           ...(isOrcamento && {
-            tipoEmbalagem: formData.tipoEmbalagem,
+            segmento: formData.segmento,
+            numeroLojas: formData.numeroLojas,
+            comoConheceu: formData.comoConheceu,
             volume: formData.volume,
           }),
         }),
@@ -121,7 +138,9 @@ export default function ContatoPage() {
           assunto: "",
           email: "",
           telefone: "",
-          tipoEmbalagem: "",
+          segmento: "",
+          numeroLojas: "",
+          comoConheceu: "",
           volume: "",
           mensagem: "",
         });
@@ -253,20 +272,35 @@ export default function ContatoPage() {
                     className="grid md:grid-cols-2 gap-6"
                   >
                     <div className="space-y-2">
-                      <Label htmlFor="tipoEmbalagem" className="flex items-center gap-2">
+                      <Label htmlFor="segmento" className="flex items-center gap-2">
                         <Package className="w-4 h-4" />
-                        Tipo de Embalagem
+                        Segmento
                       </Label>
                       <select
-                        id="tipoEmbalagem"
-                        name="tipoEmbalagem"
-                        value={formData.tipoEmbalagem}
+                        id="segmento"
+                        name="segmento"
+                        value={formData.segmento}
                         onChange={handleInputChange}
                         className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                       >
                         <option value="">Selecione...</option>
-                        {productTypes.map(type => (
-                          <option key={type} value={type}>{type}</option>
+                        {segmentos.map(s => (
+                          <option key={s} value={s}>{s}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="numeroLojas">Número de Lojas</Label>
+                      <select
+                        id="numeroLojas"
+                        name="numeroLojas"
+                        value={formData.numeroLojas}
+                        onChange={handleInputChange}
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      >
+                        <option value="">Selecione...</option>
+                        {numeroLojasOptions.map(n => (
+                          <option key={n} value={n}>{n}</option>
                         ))}
                       </select>
                     </div>
@@ -282,6 +316,21 @@ export default function ContatoPage() {
                         <option value="">Selecione...</option>
                         {volumeOptions.map(vol => (
                           <option key={vol} value={vol}>{vol}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="comoConheceu">Por onde nos conheceu</Label>
+                      <select
+                        id="comoConheceu"
+                        name="comoConheceu"
+                        value={formData.comoConheceu}
+                        onChange={handleInputChange}
+                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      >
+                        <option value="">Selecione...</option>
+                        {comoConheceuOptions.map(c => (
+                          <option key={c} value={c}>{c}</option>
                         ))}
                       </select>
                     </div>
