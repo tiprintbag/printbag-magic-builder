@@ -74,6 +74,11 @@ const certifications = [
     image: seloTwoSides,
     title: "Selo Two Sides",
     description: "Parceria com a Two Sides, instituição sem fins lucrativos que promove a sustentabilidade na cadeia gráfica e de embalagens celulósicas, combatendo o greenwashing e divulgando informações ambientais sobre o uso do papel."
+  },
+  {
+    image: seloEcovadis,
+    title: "Certificação EcoVadis",
+    description: "Uma das avaliações de sustentabilidade empresarial mais reconhecidas globalmente, analisando o desempenho ESG (Ambiental, Social e Governança)."
   }
 ];
 
