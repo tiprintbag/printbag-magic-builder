@@ -332,7 +332,7 @@ export default function SustentabilidadePage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {certifications.map((cert, index) => (
               <motion.div
                 key={cert.title}
