@@ -82,7 +82,9 @@ export default function ContatoPage() {
       assunto: assuntoParam && assuntoOptions.includes(assuntoParam) ? assuntoParam : "",
       email: "",
       telefone: "",
-      tipoEmbalagem: "",
+      segmento: "",
+      numeroLojas: "",
+      comoConheceu: "",
       volume: "",
       mensagem: mensagemParam ? decodeURIComponent(mensagemParam) : ""
     };
