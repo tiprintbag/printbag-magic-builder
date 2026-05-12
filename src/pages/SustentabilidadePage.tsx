@@ -19,6 +19,7 @@ import seloFsc from "@/assets/selo-fsc-new.png";
 import seloEnergiaRenovavel from "@/assets/selo-energia-renovavel.png";
 import seloAbvtex from "@/assets/selo-abvtex.jpg";
 import seloTwoSides from "@/assets/selo-two-sides.png";
+import seloEcovadis from "@/assets/selo-ecovadis.png";
 
 const impactNumbers = [
   { value: 254, suffix: "t", label: "De papel reciclado em 2026" },
@@ -73,6 +74,11 @@ const certifications = [
     image: seloTwoSides,
     title: "Selo Two Sides",
     description: "Parceria com a Two Sides, instituição sem fins lucrativos que promove a sustentabilidade na cadeia gráfica e de embalagens celulósicas, combatendo o greenwashing e divulgando informações ambientais sobre o uso do papel."
+  },
+  {
+    image: seloEcovadis,
+    title: "Certificação EcoVadis",
+    description: "Uma das avaliações de sustentabilidade empresarial mais reconhecidas globalmente, analisando o desempenho ESG (Ambiental, Social e Governança)."
   }
 ];
 
@@ -326,7 +332,7 @@ export default function SustentabilidadePage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {certifications.map((cert, index) => (
               <motion.div
                 key={cert.title}
