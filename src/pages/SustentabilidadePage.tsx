@@ -21,10 +21,10 @@ import seloAbvtex from "@/assets/selo-abvtex.jpg";
 import seloTwoSides from "@/assets/selo-two-sides.png";
 
 const impactNumbers = [
-  { value: 190, suffix: "t", label: "De papel reciclado em 2026" },
-  { value: 312, suffix: "t", label: "De CO₂ não emitidas em 2026" },
-  { value: 14224, suffix: "", label: "Equivalente a novas árvores plantadas/ano" },
-  { value: 68, suffix: "", label: "Carros retirados de circulação por ano" }
+  { value: 254, suffix: "t", label: "De papel reciclado em 2026" },
+  { value: 412, suffix: "t", label: "De CO₂ não emitidas em 2026" },
+  { value: 18726, suffix: "", label: "Equivalente a novas árvores plantadas/ano" },
+  { value: 90, suffix: "", label: "Carros retirados de circulação por ano" }
 ];
 
 function CountUp({ value, suffix }: { value: number; suffix: string }) {
@@ -248,7 +248,7 @@ export default function SustentabilidadePage() {
                       produção de novos materiais.
                     </p>
                     <div className="flex items-center gap-2 text-primary font-semibold">
-                      <span className="text-2xl font-heading">63,55</span>
+                      <span className="text-2xl font-heading">85,0</span>
                       <span className="text-sm">toneladas recicladas/mês</span>
                     </div>
                   </div>
@@ -285,16 +285,16 @@ export default function SustentabilidadePage() {
                       Redução de CO₂
                     </h3>
                     <p className="text-sm text-muted-foreground mb-3">
-                      Em média por mês deixamos de emitir 104,56 toneladas de CO₂.
+                      Em média por mês deixamos de emitir 138,1 toneladas de CO₂.
                     </p>
                     <div className="flex gap-6">
                       <div className="flex items-center gap-2">
                         <TreePine className="w-4 h-4 text-primary" />
-                        <span className="text-sm text-foreground"><strong>4.753</strong> árvores/mês</span>
+                        <span className="text-sm text-foreground"><strong>6.257</strong> árvores/mês</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Car className="w-4 h-4 text-primary" />
-                        <span className="text-sm text-foreground"><strong>22,5</strong> carros/ano</span>
+                        <span className="text-sm text-foreground"><strong>29,8</strong> carros/mês</span>
                       </div>
                     </div>
                   </div>
