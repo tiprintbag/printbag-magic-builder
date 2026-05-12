@@ -21,7 +21,7 @@ import { Layout } from "@/components/layout/Layout";
 import heroFactory from "@/assets/hero-factory.jpg";
 import seloFsc from "@/assets/selo-fsc-new.png";
 import seloEnergia from "@/assets/selo-energia-renovavel.png";
-import seloAbvtex from "@/assets/selo-abvtex.jpg";
+import seloEcovadis from "@/assets/selo-ecovadis.png";
 import seloTwoSides from "@/assets/selo-two-sides.png";
 import premioExcelencia from "@/assets/premio-excelencia-grafica.png";
 import sustainabilityHero from "@/assets/sustainability-hero.jpg";
@@ -72,7 +72,7 @@ const clients = [
 ];
 
 const stats = [
-  { value: "40+", label: "Anos de Experiência" },
+  { value: "15+", label: "Anos de Experiência" },
   { value: "500+", label: "Marcas Atendidas" },
   { value: "+15 mil", label: "Pontos de Venda Atendidos" },
 ];
@@ -127,7 +127,7 @@ export default function HomePage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg md:text-xl text-primary-foreground mb-8 max-w-2xl"
             >
-              Há mais de 40 anos desenvolvendo soluções personalizadas em sacolas e embalagens 
+              Há mais de 15 anos desenvolvendo soluções personalizadas em sacolas e embalagens 
               para as maiores marcas do Brasil. Com qualidade, sustentabilidade e tecnologia.
             </motion.p>
 
@@ -417,7 +417,7 @@ export default function HomePage() {
               <div className="h-20 flex items-center justify-center mb-5">
                 <img src={seloFsc} loading="lazy" alt="Selo FSC" className="max-h-full max-w-full object-contain" />
               </div>
-              <h3 className="text-lg font-heading font-bold text-foreground mb-3">Selo FSC</h3>
+              <h3 className="text-lg font-heading font-bold text-foreground text-center mb-3">Selo FSC</h3>
               <p className="text-muted-foreground text-sm leading-relaxed text-left">
                 Utilizamos matéria-prima certificada e originária de madeira de reflorestamento.
               </p>
@@ -429,21 +429,21 @@ export default function HomePage() {
               <div className="h-20 flex items-center justify-center mb-5">
                 <img src={seloEnergia} loading="lazy" alt="Selo Energia Renovável" className="max-h-full max-w-full object-contain" />
               </div>
-              <h3 className="text-lg font-heading font-bold text-foreground mb-3">Selo Energia Renovável</h3>
+              <h3 className="text-lg font-heading font-bold text-foreground text-center mb-3">Selo Energia Renovável</h3>
               <p className="text-muted-foreground text-sm leading-relaxed text-left">
                 Reduzimos nossa emissão de gases de efeito estufa a partir da geração de energia renovável.
               </p>
             </motion.div>
 
-            {/* Certificado ABVTEX */}
+            {/* Certificação EcoVadis */}
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
               className="bg-card rounded-2xl p-6 shadow-medium border border-border hover:shadow-strong transition-shadow duration-300 flex flex-col">
               <div className="h-20 flex items-center justify-center mb-5">
-                <img src={seloAbvtex} loading="lazy" alt="Certificado ABVTEX" className="max-h-full max-w-full object-contain" />
+                <img src={seloEcovadis} loading="lazy" alt="Certificação EcoVadis" className="max-h-full max-w-full object-contain" />
               </div>
-              <h3 className="text-lg font-heading font-bold text-foreground mb-3">Certificado ABVTEX</h3>
+              <h3 className="text-lg font-heading font-bold text-foreground text-center mb-3">Certificação EcoVadis</h3>
               <p className="text-muted-foreground text-sm leading-relaxed text-left">
-                Buscamos ações de boas práticas socioambientais e de governança no ambiente corporativo.
+                Uma das avaliações de sustentabilidade empresarial mais reconhecidas globalmente, analisando o desempenho ESG (Ambiental, Social e Governança).
               </p>
             </motion.div>
 
@@ -453,7 +453,7 @@ export default function HomePage() {
               <div className="h-20 flex items-center justify-center mb-5">
                 <img src={seloTwoSides} loading="lazy" alt="Selo Two Sides" className="max-h-full max-w-full object-contain" />
               </div>
-              <h3 className="text-lg font-heading font-bold text-foreground mb-3">Selo Two Sides</h3>
+              <h3 className="text-lg font-heading font-bold text-foreground text-center mb-3">Selo Two Sides</h3>
               <p className="text-muted-foreground text-sm leading-relaxed text-left">
                 Iniciativa global que certifica empresas comprometidas com a sustentabilidade do papel como material renovável, reciclável e biodegradável.
               </p>
@@ -465,7 +465,7 @@ export default function HomePage() {
               <div className="h-20 flex items-center justify-center mb-5">
                 <img src={premioExcelencia} alt="Prêmio de Excelência Gráfica Fernando Pini" className="max-h-full max-w-full object-contain" />
               </div>
-              <h3 className="text-lg font-heading font-bold text-foreground mb-3">Excelência Gráfica</h3>
+              <h3 className="text-lg font-heading font-bold text-foreground text-center mb-3">Excelência Gráfica</h3>
               <p className="text-muted-foreground text-sm leading-relaxed text-left">
                 Excelência reconhecida com múltiplos títulos no Prêmio Fernando Pini.
               </p>
