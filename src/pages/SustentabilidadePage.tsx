@@ -290,7 +290,7 @@ export default function SustentabilidadePage() {
                     <div className="flex gap-6">
                       <div className="flex items-center gap-2">
                         <TreePine className="w-4 h-4 text-primary" />
-                        <span className="text-sm text-foreground"><strong>4.753</strong> árvores/mês</span>
+                        <span className="text-sm text-foreground"><strong>6.257</strong> árvores/mês</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Car className="w-4 h-4 text-primary" />
