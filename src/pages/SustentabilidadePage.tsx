@@ -248,7 +248,7 @@ export default function SustentabilidadePage() {
                       produção de novos materiais.
                     </p>
                     <div className="flex items-center gap-2 text-primary font-semibold">
-                      <span className="text-2xl font-heading">63,55</span>
+                      <span className="text-2xl font-heading">85,0</span>
                       <span className="text-sm">toneladas recicladas/mês</span>
                     </div>
                   </div>
