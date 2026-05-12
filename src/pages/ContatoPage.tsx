@@ -26,11 +26,24 @@ const volumeOptions = [
   "Acima de 50.000 unidades"
 ];
 
-const productTypes = [
-  "Sacolas de Papel",
-  "Embalagens para Varejo",
-  "Embalagens para E-commerce",
-  "Caixas Presenteáveis",
+const segmentos = [
+  "Moda e Calçados",
+  "Cosméticos e Beleza",
+  "Jóias e Relógios",
+  "Alimentos e Bebidas",
+  "Tecnologias e Eletrônicos",
+  "Outros"
+];
+
+const numeroLojasOptions = ["1", "2", "3", "4", "5 ou mais"];
+
+const comoConheceuOptions = [
+  "Indicação",
+  "Vi a marca em uma embalagem",
+  "Já fui cliente",
+  "Linkedin",
+  "Google",
+  "Instagram/Facebook",
   "Outro"
 ];
 
