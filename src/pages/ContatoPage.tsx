@@ -19,7 +19,6 @@ import { Layout } from "@/components/layout/Layout";
 import { toast } from "sonner";
 
 const volumeOptions = [
-  "Até 1.000 unidades",
   "1.000 a 5.000 unidades",
   "5.000 a 10.000 unidades",
   "10.000 a 50.000 unidades",
